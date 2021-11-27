@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <ul>
+        <li></li>
+        <div>干啥 臭弟弟
+
+        </div>
+    </ul>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.core.min.js"></script>
+    <script>
+        
+        let obj = {
+            name: 'andy',
+            age: 19,
+            arr: [1, 2, 3]
+        }
+        deepFreeze(obj)
+        obj.name = "andy凌云"
+        obj.arr[1] = '33'
+        console.log('<<<  obj  >>>');
+        console.log(JSON.stringify(obj, null, '\t'));
+
+        function deepFreeze(obj) {
+            if (!Object.isFrozen(obj)) {
+                Object.freeze(obj)
+            }
+            for (let key in obj) {
+                if (!obj.hasOwnProperty(key) || !lodash.isObejct(obj[key])) {
+                    deepFreeze(obj[key])
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

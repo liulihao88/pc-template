@@ -1,0 +1,96 @@
+:root {
+  --tc: red;
+}
+.c-box {
+  padding: 20px;
+}
+
+@each $short, $long in ct center, bt space-between, ar space-around {
+  .c-f-#{$short} {
+    display: flex;
+    align-items: center;
+    justify-content: $long;
+  }
+  .c-f {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@for $index from 400 to 901 {
+  .c-fw-#{$index} {
+    font-weight: $index !important;
+  }
+}
+
+@for $index from 0 to 751 {
+  .c-margin-#{$index},
+  .c-m-#{$index} {
+    margin: $index + px !important;
+  }
+
+  // 得出：c-padding-30或者c-p-30
+  .c-padding-#{$index},
+  .c-p-#{$index} {
+    padding: $index + px !important;
+  }
+
+  .c-b-#{$index} {
+    color: red !important;
+    border: $index + px solid var(--tc);
+  }
+
+  .c-ft-#{$index} {
+    font-size: $index + px;
+  }
+
+  @each $short, $long in l left, t top, r right, b bottom {
+    // 缩写版，结果如： c-m-l-30
+    // 定义外边距
+    .c-m-#{$short}-#{$index} {
+      margin-#{$long}: $index + px !important;
+    }
+
+    // 定义内边距
+    .c-p-#{$short}-#{$index} {
+      padding-#{$long}: $index + px !important;
+    }
+
+    // 完整版，结果如：c-margin-left-30
+    // 定义外边距
+    .c-margin-#{$long}-#{$index} {
+      margin-#{$long}: $index + px !important;
+    }
+
+    // 定义内边距
+    .c-padding-#{$long}-#{$index} {
+      padding-#{$long}: $index + px !important;
+    }
+
+    // 定义border
+    // 定义内边距
+    .c-b-#{$short}-#{$index} {
+      border-#{$long}: $index + px solid var(--tc);
+    }
+  }
+  @if $index <= 100 {
+    .c-w-#{$index} {
+      width: $index + px;
+    }
+    .c-h-#{$index} {
+      height: $index + px;
+    }
+  }
+}
+
+@each $cl in red, orange, yellow, green, cyan, blue, purple, white, black {
+  .c-#{$cl} {
+    color: $cl;
+  }
+  .c-bg-#{$cl} {
+    background: $cl;
+  }
+}
+
+
+
