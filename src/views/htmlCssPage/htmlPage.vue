@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>test1</div>
+    <div>t1</div>
     <div class='c-f c-b-b-20'>
       <div>哈哈</div>
       <div class="c-ft-50">哈哈</div>

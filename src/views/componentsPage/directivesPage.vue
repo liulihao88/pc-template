@@ -41,7 +41,6 @@
       <el-col :span="6">
         <el-input
           v-model="iptVal2"
-          v-focus
           placeholder="这里自动聚焦"
         ></el-input>
       </el-col>
@@ -50,7 +49,6 @@
     <g-title title="4. el-price处理价格问题"></g-title>
     <el-col :span="10">
       <el-input
-        disabled
         v-model="price"
         v-price
         placeholder=""

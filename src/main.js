@@ -1,9 +1,10 @@
 import Vue from 'vue'
+// 国际化
+
+
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import '@/utils/setElement'
 
 import '@/styles/index.scss' // global css
 import '@/styles/gStyle.scss' // 自定义的全局css
@@ -14,16 +15,22 @@ import store from './store'
 import router from './router'
 import * as $pub from 'u/gFunc'
 
+const _ = require('lodash')
+
 
 // for(let key in $pub){
 //   let funcName = $pub[key];
 //   window[key] = funcName;
 // }
 // Vue.prototype.$pub = window.$pub = window.g = $pub 
-Vue.prototype.$pub = $pub
+Vue.prototype.$pub = window.$pub = $pub
+Vue.prototype.$toast =window.$toast=$pub.$toast;
+Vue.prototype.log =window.log=$pub.log;
 // window._toast = $pub._toast;
+
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
+
 
 import { chaining } from 'u/gInstall'
 Vue.use(chaining)
@@ -37,14 +44,27 @@ import * as filters from 'u/filters'
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 })
+import {validateMixin} from '@/utils/validateMixin'
 
-Vue.use(ElementUI)
+Vue.mixin({
+  data() {
+    return {
+      mLoading1: false,
+      mIsDev: process.env.NODE_ENV === 'development',
+    };
+  },
+  mixins: [validateMixin], // 全局的mixins校验
+})
+
+
+
 
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
   router,
+  // i18n,
   store,
   render: h => h(App)
 })

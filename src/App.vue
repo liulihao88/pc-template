@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   created() {
-
+    
   },
   mounted() {
     // this.$pub._toast = this.$pub._toast.bind(this);

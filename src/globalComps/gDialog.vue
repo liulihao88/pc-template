@@ -8,7 +8,7 @@
       :width="width"
       :height="height"
       :visible.sync="isShow"
-      :close-on-click-modal="false"
+      :close-on-click-modal="modelClose"
       :show-close="true"
       :close-on-press-escape="true"
       @close="cancelHandle"
@@ -50,8 +50,15 @@ export default {
     cancel: {
       type: [Function, String],
       default: ''
-    }
+    },
+    modelClose: {
+      type: Boolean,
+      default: true,
+    },
+
   },
+   
+   
   data() {
     return {
       isShow: this.showDialog
@@ -60,15 +67,18 @@ export default {
   watch: {
     showDialog() {
       this.isShow = this.showDialog;
+    
     }
   },
   created() {
+     
   },
   mounted() {
   },
   methods: {
     confirmHandle() {
       this.$emit('confirm');
+      console.log("🚀 ~ file: gDialog.vue ~ line 79 ~ confirmHandle ~ confirm", confirm)
     },
     cancelHandle() {
       if (typeof this.cancel === 'function') {

@@ -1,6 +1,7 @@
 
 import { _ } from 'core-js';
 import './instable'
+import { Message } from 'element-ui'
 /**
  * 格式化时间为年月日时分秒的格式， 格式可以自定义。 
  * ① 时间戳10位和13位都可以转换成格式化的日期
@@ -209,4 +210,89 @@ export function deepFreeze(obj) {
 
 
 
+export function add() {
+    const _args = [...arguments];
+    function fn() {
+        _args.push(...arguments);
+        return fn;
+    }
+    fn.toString = function() {
+        let res = _args.reduce((sum, cur) => sum + cur)
+        console.log('33333<<<  res  >>>33333');
+        console.log(res);
+        return res;
+    }
+    console.log('22222<<<  fn  >>>22222');
+    console.log(fn);
+    return fn;
+}
+
+// 后台接口返回的大图片, 返回一个较小的图片
+export function getSizeImage(imgUrl, size = 20) {
+    return `${imgUrl}?param=${size}x${size}`
+}
+
+
+// 全局的提示， 注册到全局 使用方法 $toast('成功提示', 's')
+export function $toast(str, type = 's', otherObj) {
+    let handleType = type;
+    if (type === 's') {
+        handleType = 'success'
+    } else if (type === 'i') {
+        handleType = 'info'
+    } else if (type === 'e') {
+        handleType = 'error'
+    } else if (type === 'w') {
+        handleType = 'warning'
+    }
+
+    Message({
+        message: str,
+        type: handleType,
+    })
+}
+
+
+/**
+ * 判断传入参数的类型
+ * @param {*} val
+ * judgeType(new RegExp()) regexp
+ * judgeType(new Date()) date
+ * judgeType([]) array
+ * judgeType({}) object
+ * judgeType(null) null
+ */
+export function judgeType(val) {
+    if (typeof val === 'object') {
+        const objVal = Object.prototype.toString.call(val).slice(8, -1).toLowerCase();
+        return objVal;
+    } else {
+        return typeof val;
+    }
+}
+
+// export function log(str, val) {
+//     if (typeof val === 'object') {
+//         if (judgeType(val) === 'array' || judgeType(val) === 'object') {
+//             console.log(`%c ${str}` + '', 'background:#000;color:#bada55', judgeType(val));
+//             console.log(JSON.stringify(val, null, '\t'))
+//         } else {
+//             console.log(`%c ${str}` + '', 'background:#000;color:#bada55', judgeType(val), val);
+//         }
+//     } else {
+//         console.log(`%c ${str}` + '', 'background:#000;color:#bada55', judgeType(val), val);
+//     }
+// }
+export function log(str, val) {
+    if (typeof val === 'object') {
+        if (judgeType(val) === 'array' || judgeType(val) === 'object') {
+            console.log(`%c ${str}` + '', 'background:#000;color:#bada55', judgeType(val));
+            console.log(JSON.stringify(val, null, '\t'))
+        } else {
+            console.log(`%c ${str}` + '', 'background:#000;color:#bada55', judgeType(val), val);
+        }
+    } else {
+        console.log(`%c ${str}` + '', 'background:#000;color:#bada55', judgeType(val), val);
+    }
+}
 

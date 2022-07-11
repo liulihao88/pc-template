@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="#/home">history跳转home</a>
+    <a href="#/about">history跳转about</a>
+
+    <div id="app"></div>
+    <script>
+        // 模拟hash模式跳转
+        let el = document.getElementById('app')
+        window.addEventListener('hashchange', () => {
+            if (location.hash === '#/home') {
+                el.innerHTML = '首页'
+            }
+            if (location.hash === '#/about') {
+                el.innerHTML = '关于'
+            }
+        })
+    </script>
+</body>
+
+</html>

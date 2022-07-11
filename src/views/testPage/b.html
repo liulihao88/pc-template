@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 100px;
+            height: 100px;
+        }
+
+        .ui-slider-tooltip {
+            /* CSS属性顺序按照 字母首字母 排列*/
+            background: #333333;
+            border: 1px solid #333333;
+            color: #ffffff;
+            display: block;
+            text-align: left;
+            padding: 5px 3px 5px 3px;
+            position: absolute;
+            z-index: 99999;
+        }
+
+        .ui-corner-all {
+            -moz-border-radius-bottomleft: 5px;
+            -moz-border-radius-bottomright: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            -webkit-border-top-left-radius: 5px 5px;
+            -webkit-border-top-right-radius: 5px 5px;
+            -webkit-border-bottom-right-radius: 5px 5px;
+            -webkit-border-bottom-left-radius: 5px 5px;
+            border-radius: 5px;
+        }
+
+        .ui-tooltip-pointer-down {
+            border-bottom-width: 0;
+            border-left: 7px dashed transparent;
+            border-right: 7px dashed transparent;
+            border-top: 8px solid #333333;
+            bottom: -8px;
+            display: block;
+            height: 0;
+            left: 18%;
+            margin-left: -7px;
+            position: absolute;
+            width: 0;
+        }
+
+        .ui-tooltip-pointer-down-inner {
+            border-left: 6px dashed transparent;
+            border-right: 6px dashed transparent;
+            border-top: 7px solid #333333;
+            left: -6px;
+            top: -9px;
+            position: absolute;
+        }
+
+        .tip {
+            font-size: 9pt;
+        }
+    </style>
+</head>
+
+<body>
+    <tr>
+        <td><input type="text" name="username" style="height: 40px;font-size: 16px;" placeholder="请输入用户名" id="name"
+                title="姓名的全拼" />
+        </td>
+    </tr>
+
+    <tr>
+        <td><input type="password" name="password" style="height: 40px;font-size: 16px;" placeholder="请输入密码" id="pass"
+                title="111" />
+        </td>
+    </tr>
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <script src="./tooltip2.js"></script>
+    <script>
+        $(document).ready(function() {
+            //所有的Input同意添加tooltip
+            $("input").showTip({
+                isAnimate: true
+            });
+
+            setTimeout(() => {
+                $('#pass').attr('title', '干啥啊')
+            }, 3000);
+            //  $("#name").showTip({flagInfo:"用户名是汉语拼音全拼"});
+            // $("#name").showTip({
+            // isAnimate: true
+            // });
+            // $("#pass").showTip({
+            // isAnimate: true
+            // });
+
+        });
+
+    </script>
+</body>
+
+</html>

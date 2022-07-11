@@ -13,7 +13,7 @@ import Layout from '@/layout'
  * hidden: true                   if set true, item will not show in the sidebar(default is false)
  * alwaysShow: true               if set true, will always show the root menu
  *                                if not set alwaysShow, when item has more than one children route,
- *                                it will becomes nested mode, otherwise not show the root menu
+ *                                it will becomes collection mode, otherwise not show the root menu
  * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
  * name:'router-name'             the name is used by <keep-alive> (must set!!!)
  * meta : {
@@ -77,42 +77,42 @@ export const constantRoutes = [
   },
 
   {
-    path: '/nested',
+    path: '/collection',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
+    redirect: '/collection/menu1',
+    name: 'Collection',
     meta: {
-      title: 'Nested',
-      icon: 'nested'
+      title: '收藏的页面',
+      icon: 'dashboard'
     },
     children: [
       {
         path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        component: () => import('@/views/collection/menu1/index'), // Parent router-view
         name: 'Menu1',
         meta: { title: 'Menu1' },
         children: [
           {
             path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
+            component: () => import('@/views/collection/menu1/menu1-1'),
             name: 'Menu1-1',
             meta: { title: 'Menu1-1' }
           },
           {
             path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
+            component: () => import('@/views/collection/menu1/menu1-2'),
             name: 'Menu1-2',
             meta: { title: 'Menu1-2' },
             children: [
               {
                 path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                component: () => import('@/views/collection/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
                 meta: { title: 'Menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                component: () => import('@/views/collection/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
                 meta: { title: 'Menu1-2-2' }
               }
@@ -120,17 +120,17 @@ export const constantRoutes = [
           },
           {
             path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
+            component: () => import('@/views/collection/menu1/menu1-3'),
             name: 'Menu1-3',
             meta: { title: 'Menu1-3' }
           }
         ]
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+        path: 'notFoundPage',
+        component: () => import('@/views/collection/notFoundPage/index'),
+        name: 'NotFoundPage',
+        meta: { title: '未找到404' }
       }
     ]
   },
@@ -142,7 +142,7 @@ export const constantRoutes = [
     name: 'Test1',
     meta: {
       title: 'html和css',
-      icon: 'nested'
+      icon: 'dashboard'
     },
     children: [
       {
@@ -151,35 +151,65 @@ export const constantRoutes = [
         meta: { title: 'html页面' }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
+        path: 'notFoundPage',
+        component: () => import('@/views/collection/notFoundPage/index'),
+        name: 'NotFoundPage',
+        meta: { title: 'notFoundPage' }
+      },
+      {
+        path: 'changeBody',
+        component: () => import('@/views/htmlCssPage/changeBody'),
+        name: 'ChangeBody',
+        meta: { title: '换肤' }
+      },
+      {
+        path: 'scroll',
+        component: () => import('@/views/htmlCssPage/scroll'),
+        name: 'Scroll',
+        meta: { title: '滚动' }
+      },
+      {
+        path: 'validateForm',
+        component: () => import('@/views/htmlCssPage/validateForm'),
+        name: 'ValidateForm',
+        meta: { title: '动态验证表单' }
+      },
+    ]
+  },
+
+  {
+    path: '/form',
+    component: Layout,
+    redirect: '/formValid',
+    // name: 'Test1',
+    meta: {
+      title: '表单相关',
+      icon: 'collection'
+    },
+    children: [
+      {
+        path: '/formValid',
+        component: () => import('@/views/form/formValid'), // Parent router-view
+        meta: { title: '表单', icon: 'dashboard' },
+      },
     ]
   },
 
   {
     path: '/test',
     component: Layout,
-    redirect: '/test/test1',
+    redirect: '/test/t1',
     // name: 'Test1',
     meta: {
       title: '测试页面',
-      icon: 'nested'
+      icon: 'collection'
     },
     children: [
       {
-        path: 'test1',
-        component: () => import('@/views/testPage/test1'), // Parent router-view
+        path: 't1',
+        component: () => import('@/views/testPage/t1'), // Parent router-view
         meta: { title: '测试1', icon: 'dashboard' },
       },
-      // {
-      //   path: 'menu2',
-      //   component: () => import('@/views/nested/menu2/index'),
-      //   name: 'Menu2',
-      //   meta: { title: 'menu2' }
-      // }
     ]
   },
 
@@ -190,7 +220,7 @@ export const constantRoutes = [
     // name: 'Test1',
     meta: {
       title: '练习',
-      icon: 'nested'
+      icon: 'collection'
     },
     children: [
       {
@@ -198,12 +228,6 @@ export const constantRoutes = [
         component: () => import('@/views/exercise/index'), // Parent router-view
         meta: { title: '练习', icon: 'dashboard' },
       },
-      // {
-      //   path: 'menu2',
-      //   component: () => import('@/views/nested/menu2/index'),
-      //   name: 'Menu2',
-      //   meta: { title: 'menu2' }
-      // }
     ]
   },
 

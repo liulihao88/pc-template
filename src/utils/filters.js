@@ -50,3 +50,10 @@ export function numberFormatter(num, digits = 2) {
     }
     return num.toString()
 }
+
+export function addEmpty(val){
+    if (val) {
+        return val
+    }
+    return '–'
+}

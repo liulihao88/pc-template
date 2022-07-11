@@ -87,13 +87,8 @@ function amount(value) {
 	return /^[1-9]\d*(,\d{3})*(\.\d{1,2})?$|^0\.\d{1,2}$/.test(value);
 }
 
-/**
- * 中文
- */
-function chinese(value) {
-	let reg = /^[\u4e00-\u9fa5]+$/gi;
-	return reg.test(value);
-}
+
+
 
 /**
  * 只能输入字母

@@ -1,8 +1,15 @@
 :root {
   --tc: red;
+  --tc2: yellow;
 }
 .c-box {
   padding: 20px;
+}
+.c-tc2 {
+  background: var(--tc2);
+}
+.tc {
+  text-align: center;
 }
 
 @each $short, $long in ct center, bt space-between, ar space-around {
@@ -22,6 +29,9 @@
     font-weight: $index !important;
   }
 }
+.bs {
+  box-sizing: border-box;
+}
 
 @for $index from 0 to 751 {
   .c-margin-#{$index},
@@ -31,7 +41,8 @@
 
   // 得出：c-padding-30或者c-p-30
   .c-padding-#{$index},
-  .c-p-#{$index} {
+  .c-p-#{$index},
+  .p-#{$index} {
     padding: $index + px !important;
   }
 
@@ -84,13 +95,12 @@
 }
 
 @each $cl in red, orange, yellow, green, cyan, blue, purple, white, black {
-  .c-#{$cl} {
+  .c-#{$cl},
+  .cl-#{$cl} {
     color: $cl;
   }
-  .c-bg-#{$cl} {
+  .c-bg-#{$cl},
+  .bg-#{$cl} {
     background: $cl;
   }
 }
-
-
-

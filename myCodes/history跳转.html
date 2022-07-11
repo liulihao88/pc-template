@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/home">history跳转home</a>
+    <a href="/about">history跳转about</a>
+    <div id="app"></div>
+    <script>
+        let app = document.getElementById('app');
+        let aEls = document.getElementsByTagName('a');
+        for (let el of aEls) {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = el.getAttribute('href')
+                history.pushState({}, '', href);
+                urlChange();
+            })
+        }
+        // 执行返回操作时， 依然来到urlChange
+        window.addEventListener('popstate', urlChange);
+        // 监听url的改变
+        function urlChange() {
+            if (location.pathname === '/home') {
+                app.innerHTML = '首页'
+            }
+            if (location.pathname === '/about') {
+                app.innerHTML = '关于'
+            }
+        }
+    </script>
+</body>
+
+</html>
