@@ -7,7 +7,7 @@
     <el-button
       @click="t2"
       type="info"
-    >测试22332</el-button>
+    >测试2233 打2</el-button>
     <gForm :formItems="formItems" class="p-16" ></gForm>
   </div>
 </template>
