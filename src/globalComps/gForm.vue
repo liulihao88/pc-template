@@ -10,7 +10,7 @@
             <el-form-item :label="v.label">
               <template v-if="v.type==='select'">
                 <el-select
-                  v-model="form[v.value]"
+                  v-model="form[v.title]"
                   placeholder="请选择"
                   :style="{width: v.width}"
                 >
@@ -24,7 +24,7 @@
                 </el-select>
               </template>
               <template v-else>
-                < v-model="form[v.value]"></>
+                <el-input v-model="form[v.title]"></el-input>
               </template>
             </el-form-item>
           </el-col>
@@ -40,6 +40,11 @@ import { log } from '@/utils/gFunc';
 export default {
   name: "GForm",
   props: {
+    value: {
+      type: Object,
+      required: true,
+    },
+
     formItems: {
       type: Array,
       default: () => [],
@@ -52,23 +57,31 @@ export default {
   },
   data() {
     return {
-      form: {
-        username: 'andy',
-      },
+      form: {},
     };
   },
   components: {},
   computed: {},
-  watch: {},
-  created() { },
+  watch: {
+    form: {
+      handler(val) {
+        // console.log(`obj打印***** val ***** 72行 ~/test/testProject/pc-template/src/globalComps/gForm.vue  10:36:03`);
+        // console.log(JSON.stringify(val, null, '\t'));
+        
+        this.$emit('update:value', val);
+        this.$emit('change', val)
+      },
+      deep: true,
+    }
+  },
+  created() {
+    this.form = this.$pub.deepClone(this.value)
+    // this.form = Object.assign({}, this.value);
+  },
   mounted() { },
   methods: {
     t1() {
       log('this.form 41行 src/globalComps/gForm.vue 10:31:00', this.form)
-
-
-
-
     },
 
   }

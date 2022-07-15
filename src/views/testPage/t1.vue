@@ -8,7 +8,7 @@
       @click="t2"
       type="info"
     >测试2233 dsadsa打2</el-button>
-    <gForm :formItems="formItems" class="p-16" ></gForm>
+    <gForm :formItems="formItems" class="p-16" :value.sync="formData" @change="changeForm"></gForm>
   </div>
 </template>
 
@@ -19,12 +19,18 @@ export default {
   props: {},
   data() {
     return {
+      formData: {
+        username: 'aaaa',
+        password: '',
+      },
       formItems: [
         {
+          title: 'username', 
           label: '用户名',
           value: 'username',
         },
         {
+          title: 'password',
           label: '密码',
           value: 'password',
         },
@@ -82,6 +88,12 @@ export default {
     t2() {
       console.log('t2');
     },
+    changeForm(faVal){
+      console.log(`obj打印***** faVal ***** 92行 ~/test/testProject/pc-template/src/views/testPage/t1.vue  10:46:30`);
+      console.log(JSON.stringify(faVal, null, '\t'));
+      console.log(`obj打印***** this.form ***** 94行 ~/test/testProject/pc-template/src/views/testPage/t1.vue  10:46:36`);
+      console.log(JSON.stringify(this.formData, null, '\t'));
+    }
   }
 }
 </script>
