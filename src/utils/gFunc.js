@@ -296,3 +296,58 @@ export function log(str, val) {
     }
 }
 
+
+
+// Function.prototype.before = function(beforefn) {
+//     var __self = this;    // 保存原函数的引用   
+//     return function() {    // 返回包含了原函数和新函数的"代理"函数     
+//         beforefn.apply(this, arguments);
+//         // 执行新函数，修正this      
+//         return __self.apply(this, arguments);
+//         // 执行原函数 
+//     }
+// };
+// Function.prototype.after = function(afterfn) { var __self = this; return function() { var ret = __self.apply(this, arguments); 
+// afterfn.apply(this, arguments); return ret; } }; 
+
+Function.prototype.before = function(beforefn) {
+    let _self = this; // 保存原函数的引用
+    // 返回包含了原函数和新函数的"代理"函数
+    return function() {
+        beforefn.apply(this, arguments);
+        // 执行新函数, 修正this
+        return _self.apply(this, arguments);
+        // 执行原函数
+    }
+}
+
+Function.prototype.after = function(afterfn) {
+    let _self = this;
+    return function() {
+        let ret = _self.apply(this, arguments);
+        afterfn.apply(this, arguments);
+        return ret;
+    }
+}
+
+// 使用
+export function mergeFunc(str = 2) {
+    let mid = function() {
+        console.log(str)
+    };
+    mid = mid
+    .before(function () {
+      console.log(1)
+    })
+    .after(function () {
+      console.log(3)
+    })
+    .after(function(){
+        console.log(4)
+    })    
+    return mid();
+}
+
+
+
+

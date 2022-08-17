@@ -17,6 +17,13 @@ import * as $pub from 'u/gFunc'
 
 const _ = require('lodash')
 
+import KdComponents from '@kd/components'
+console.log(`%c 111=>21行 src/main.js KdComponents `, 'background:#000;color:#bada55', KdComponents);
+
+import '@kd/components/dist/kd-components.css'
+
+Vue.use(KdComponents)
+
 
 // for(let key in $pub){
 //   let funcName = $pub[key];

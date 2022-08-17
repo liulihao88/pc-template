@@ -1,101 +1,63 @@
 <template>
-  <div>
-    <el-button
-      @click="t1"
-      type="primary"
-    >测试1</el-button>
-    <el-button
-      @click="t2"
-      type="info"
-    >测试2233 dsadsa打2</el-button>
-    <gForm :formItems="formItems" class="p-16" :value.sync="formData" @change="changeForm"></gForm>
+  <div class="box">
+    <!-- background: #365edf; height: 24px; line-height: 24px; margin-top: 40px padding: 8px; font-size: 40px;-->
+    <div class="bg-blue h3 lh3 mt5 p ft-40 d-ib w-322">哈哈1</div>
+    <!-- height: 30%; width: 30%; margin-left: 30px; padding: 50px 0;-->
+    <div class="h-30% w-20% m-l-30 p-tb-50 d-ib ac">哈哈2</div>
+    <!-- color: #ffb51f; position: relative; top: 2px; left: 100px; font-weight: bold-->
+    <div class="cl-yellow po-r t-2 l-100 bold o-h">哈哈3</div>
+    <div class="f-ar f-wrap w-100%">
+      <div class="f-2 cl-65 b-b-10">左边0.15透明度 border-bottom: 10px</div>
+      <div class="f-1 o-4 b">我是右边0.4的透明度</div>
+    </div>
+
+    <div class="dd">我原本是黄色背景</div>
+    <div class="aa">这里是style里的红色</div>
+    <div class="bg-blue cl-green">我原本是绿色背景, 但是动态改为了红色</div>
+    <el-button @click="changeColor" type="primary">随机改变颜色</el-button>
+    <el-button @click="changeColor" type="info">用换肤改变颜色</el-button>
   </div>
 </template>
 
 <script>
-import { Stack } from '../../../saveCodes/coderwhy学习-原型链'
 export default {
-  name: "Test5",
+  name: "T1",
   props: {},
   data() {
     return {
-      formData: {
-        username: 'aaaa',
-        password: '',
+      age: {
+        name: "a",
       },
-      formItems: [
-        {
-          title: 'username', 
-          label: '用户名',
-          value: 'username',
-        },
-        {
-          title: 'password',
-          label: '密码',
-          value: 'password',
-        },
-        {
-          label: '选择框',
-          value: 'select',
-          type: 'select',
-          width: '200px',
-          options: [{
-            label: 'andy',
-            value: 111,
-          }, {
-            label: '凌云',
-            value: 222,
-          }]
-        },
-        {
-          label: '日期范围',
-          value: 'dateRange',
-        },
-        {
-          label: '日期范围',
-          value: 'dateRange',
-        },
-
-      ],
-    };
+    }
   },
   components: {},
   computed: {},
   watch: {},
+
   created() {
-    this.t1()
+    this.init()
   },
-  mounted() { },
+  mounted() {},
   methods: {
-    t1() {
-      var s = new Stack()
-      s.push(20000)
-      s.push(10)
-      s.push(100)
-      s.push(77)
-      console.log(s)
-
-      console.log(s.peek())
-
-      console.log(s.isEmpty(), s.size())
-
-      console.log(s.toString())
-      s.pop()
-      s.pop()
-      console.log(s.toString())
-      console.log('t1');
+    changeColor() {
+      let cl = this.$pub.$getRandomColor()
+      document.body.style.setProperty("--blue", cl)
     },
-    t2() {
-      console.log('t2');
+    init() {
+      document.body.style.setProperty("--yellow", "pink")
+      // document.body.style.setProperty("--blue", "red")
     },
-    changeForm(faVal){
-      console.log(`obj打印***** faVal ***** 92行 ~/test/testProject/pc-template/src/views/testPage/t1.vue  10:46:30`);
-      console.log(JSON.stringify(faVal, null, '\t'));
-      console.log(`obj打印***** this.form ***** 94行 ~/test/testProject/pc-template/src/views/testPage/t1.vue  10:46:36`);
-      console.log(JSON.stringify(this.formData, null, '\t'));
-    }
-  }
+  },
 }
 </script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
+// .aa {
+//   background: var(--red);
+// }
+// .box ::v-deep .el-button--info{
+//   background: var(--blue);
+// }
+// .dd{
+//   background: $blue;
+// }
 </style>
