@@ -19,5 +19,3 @@ obj.__proto__.__proto__.__proto__ = {
   address: "上海市"
 }
 
-console.log(obj.address)
-

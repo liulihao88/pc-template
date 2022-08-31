@@ -12,18 +12,12 @@ const obj = {
 
 watchFn(function() {
   const newName = obj.name
-  console.log("你好啊, 李银河")
-  console.log("Hello World")
-  console.log(obj.name) // 100行
 })
 
 watchFn(function() {
-  console.log(obj.name, "demo function -------")
 })
 
 function bar() {
-  console.log("普通的其他函数")
-  console.log("这个函数不需要有任何响应式")
 }
 
 obj.name = "kobe"

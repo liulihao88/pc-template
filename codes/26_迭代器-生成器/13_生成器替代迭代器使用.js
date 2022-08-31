@@ -17,11 +17,6 @@ function* createArrayIterator(arr) {
 // const names = ["abc", "cba", "nba"]
 // const namesIterator = createArrayIterator(names)
 
-// console.log(namesIterator.next())
-// console.log(namesIterator.next())
-// console.log(namesIterator.next())
-// console.log(namesIterator.next())
-
 // 2.创建一个函数, 这个函数可以迭代一个范围内的数字
 // 10 20
 function* createRangeIterator(start, end) {
@@ -43,11 +38,6 @@ function* createRangeIterator(start, end) {
 }
 
 const rangeIterator = createRangeIterator(10, 20)
-console.log(rangeIterator.next())
-console.log(rangeIterator.next())
-console.log(rangeIterator.next())
-console.log(rangeIterator.next())
-console.log(rangeIterator.next())
 
 // 3.class案例
 class Classroom {
@@ -62,7 +52,6 @@ class Classroom {
   }
 
   foo = () => {
-    console.log("foo function")
   }
 
   // [Symbol.iterator] = function*() {
@@ -76,6 +65,5 @@ class Classroom {
 
 const classroom = new Classroom("3幢", "1102", ["abc", "cba"])
 for (const item of classroom) {
-  console.log(item)
 }
 

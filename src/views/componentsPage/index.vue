@@ -54,11 +54,6 @@ export default {
   created() {
     var array = [1];
     var other = _.flatten(_.concat(array, 2, [3], [[4]], [4,5,6]));
-
-    console.log(other);
-    // => [1, 2, 3, [4]]
-
-    console.log(array);
     // => [1]
   },
   mounted() {

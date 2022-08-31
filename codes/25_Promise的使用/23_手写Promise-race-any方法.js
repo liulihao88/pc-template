@@ -183,14 +183,8 @@ const p3 = new Promise((resolve, reject) => {
 
 
 // HYPromise.race([p1, p2, p3]).then(res => {
-//   console.log("res:", res)
-// }).catch(err => {
-//   console.log("err:", err)
 // })
 
 HYPromise.any([p1, p2, p3]).then(res => {
-  console.log("res:", res)
-}).catch(err => {
-  console.log("err:", err.errors)
 })
 

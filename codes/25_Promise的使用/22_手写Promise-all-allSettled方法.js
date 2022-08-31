@@ -152,12 +152,8 @@ const p3 = new Promise((resolve) => {
   setTimeout(() => { resolve(3333) }, 3000)
 })
 // HYPromise.all([p1, p2, p3]).then(res => {
-//   console.log(res)
-// }).catch(err => {
-//   console.log(err)
 // })
 
 HYPromise.allSettled([p1, p2, p3]).then(res => {
-  console.log(res)
 })
 

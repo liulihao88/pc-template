@@ -20,7 +20,4 @@ const p3 = new Promise((resolve, reject) => {
 // 需求: 所有的Promise都变成fulfilled时, 再拿到结果
 // 意外: 在拿到所有结果之前, 有一个promise变成了rejected, 那么整个promise是rejected
 Promise.all([p2, p1, p3, "aaaa"]).then(res => {
-  console.log(res)
-}).catch(err => {
-  console.log("err:", err)
 })

@@ -21,7 +21,4 @@ const p3 = new Promise((resolve, reject) => {
 // 只要有一个Promise变成fulfilled状态, 那么就结束
 // 意外: 
 Promise.race([p1, p2, p3]).then(res => {
-  console.log("res:", res)
-}).catch(err => {
-  console.log("err:", err)
 })

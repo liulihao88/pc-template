@@ -1,5 +1,4 @@
 // function foo() {
-//   console.log("函数被调用了", this)
 // }
 
 // 1.foo直接调用和call/apply调用的不同在于this绑定的不同
@@ -18,7 +17,6 @@
 
 // 2.call和apply有什么区别?
 function sum(num1, num2, num3) {
-  console.log(num1 + num2 + num3, this)
 }
 
 sum.call("call", 20, 30, 40)

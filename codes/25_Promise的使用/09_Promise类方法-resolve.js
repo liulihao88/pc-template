@@ -7,7 +7,6 @@
 // }
 
 // foo().then(res => {
-//   console.log("res:", res)
 // })
 
 // 类方法Promise.resolve
@@ -24,7 +23,6 @@ const promise = Promise.resolve(new Promise((resolve, reject) => {
 }))
 
 promise.then(res => {
-  console.log("res:", res)
 })
 
 // 3.传入thenable对象

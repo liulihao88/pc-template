@@ -17,8 +17,6 @@ export const validateMixin = {
         // /^[0-9a-zA-Z_\-\.\u4e00-\u9fa5]{1,}$/
         // eslint-disable-next-line
         let validFlag = /^[0-9a-zA-Z_\-]{1,}$/.test(value);
-        console.log(`44444***** validFlag ***** 21行 ~/kj/qiankun-fe/main/src/share/mixin/validateMixin.js  11:53:59`);
-        console.log(validFlag);
         if (!validFlag) {
           callback(new Error(errorInfo));
         } else {

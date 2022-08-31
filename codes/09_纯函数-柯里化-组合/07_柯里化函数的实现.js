@@ -18,7 +18,6 @@ function makeAdder(count) {
 }
 
 function log(date, type, message) {
-  console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]: [${message}]`)
 }
 
 // 柯里化函数的实现hyCurrying
@@ -44,15 +43,9 @@ function hyCurrying(fn) {
 
 var curryAdd = hyCurrying(add1)
 
-
-console.log(curryAdd(10, 20, 30))
-console.log(curryAdd(10, 20)(30))
-console.log(curryAdd(10)(20)(30))
-
 // function foo(x, y, z, m, n, a, b) {
 
 // }
-// console.log(foo.length)
 
 
 function foo(x, y, z) {

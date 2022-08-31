@@ -57,11 +57,3 @@ export function Stack(){
 
 // s.pop()
 // s.pop()
-
-// console.log(s)
-
-// console.log(s.peek())
-
-// console.log(s.isEmpty(), s.size())
-
-// console.log(s.toString())

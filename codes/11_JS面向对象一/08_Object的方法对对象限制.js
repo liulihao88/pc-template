@@ -9,8 +9,6 @@ Object.preventExtensions(obj)
 obj.height = 1.88
 obj.address = "广州市"
 
-console.log(obj)
-
 // 2.禁止对象配置/删除里面的属性
 // for (var key in obj) {
 //   Object.defineProperty(obj, key, {
@@ -24,10 +22,8 @@ console.log(obj)
 Object.seal(obj)
 
 delete obj.name
-console.log(obj.name)
 
 // 3.让属性不可以修改(writable: false)
 Object.freeze(obj)
 
 obj.name = "kobe"
-console.log(obj.name)

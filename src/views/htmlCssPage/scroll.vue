@@ -82,8 +82,6 @@ export default {
             this.headerOpacity -= 0.01;
           }
           this.topHeight += 1;
-          console.log(`11111***** this.width ***** 85行 ~/test/testProject/pc-template/src/views/htmlCssPage/scroll.vue  14:36:29`);
-          console.log(this.width);
         } else {
           this.width -= 1;
           if (this.headerOpacity <= 1) {
@@ -92,8 +90,6 @@ export default {
           if (this.topHeight >= 0) {
             this.topHeight -= 1;
           }
-          console.log(`22222***** this.width ***** 95行 ~/test/testProject/pc-template/src/views/htmlCssPage/scroll.vue  14:36:35`);
-          console.log(this.width);
         }
       }
     },

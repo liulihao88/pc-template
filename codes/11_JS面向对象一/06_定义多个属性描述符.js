@@ -30,6 +30,3 @@ Object.defineProperties(obj, {
 })
 
 obj.age = 19
-console.log(obj.age)
-
-console.log(obj)

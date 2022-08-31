@@ -18,9 +18,6 @@
 //   // pending -> fulfilled
 //   resolve(newPromise)
 // }).then(res => {
-//   console.log("res:", res)
-// }, err => {
-//   console.log("err:", err)
 // })
 
 // 2.传入一个对象, 这个兑现有then方法
@@ -34,9 +31,6 @@ new Promise((resolve, reject) => {
   }
   resolve(obj)
 }).then(res => {
-  console.log("res:", res)
-}, err => {
-  console.log("err:", err)
 })
 
 // eatable/runable

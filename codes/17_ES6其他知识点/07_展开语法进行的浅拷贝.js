@@ -4,8 +4,4 @@ const info = {
 }
 
 const obj = { ...info, name: "coderwhy" }
-// console.log(obj)
-obj.friend.name = "james"
-
-console.log(info.friend.name)
 

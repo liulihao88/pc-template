@@ -120,7 +120,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$attrs)
   },
   methods: {
     // 本周开始的时间戳

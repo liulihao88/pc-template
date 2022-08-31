@@ -5,7 +5,6 @@ class Person {
   }
 
   eating() {
-    console.log(this.name + " eating~")
   }
 }
 
@@ -47,7 +46,6 @@ var Person = /*#__PURE__*/ (function () {
     {
       key: "eating",
       value: function eating() {
-        console.log(this.name + " eating~");
       }
     }
   ]);

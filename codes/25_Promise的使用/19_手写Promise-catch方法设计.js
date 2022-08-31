@@ -88,14 +88,10 @@ class HYPromise {
 }
 
 const promise = new HYPromise((resolve, reject) => {
-  console.log("状态pending")
   // resolve(1111) // resolved/fulfilled
   reject(2222)
 })
 
 // 调用then方法多次调用
 promise.then(res => {
-  console.log("res:", res)
-}).catch(err => {
-  console.log("err:", err)
 })

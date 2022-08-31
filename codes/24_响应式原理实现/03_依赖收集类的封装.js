@@ -28,13 +28,9 @@ const obj = {
 
 watchFn(function() {
   const newName = obj.name
-  console.log("你好啊, 李银河")
-  console.log("Hello World")
-  console.log(obj.name) // 100行
 })
 
 watchFn(function() {
-  console.log(obj.name, "demo function -------")
 })
 
 obj.name = "kobe"

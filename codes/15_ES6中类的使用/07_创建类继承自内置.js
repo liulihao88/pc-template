@@ -17,5 +17,3 @@ class HYArray extends Array {
 }
 
 var arr = new HYArray(1, 2, 3)
-console.log(arr.firstItem())
-console.log(arr.lastItem())

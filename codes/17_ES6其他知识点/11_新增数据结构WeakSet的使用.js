@@ -31,7 +31,6 @@ class Person {
     if (!personSet.has(this)) {
       throw new Error("不能通过非构造方法创建出来的对象调用running方法")
     }
-    console.log("running~", this)
   }
 }
 

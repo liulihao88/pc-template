@@ -60,21 +60,15 @@ const objProxy = new Proxy(obj, {
 
 watchFn(function() {
   const newName = objProxy.name
-  console.log("你好啊, 李银河")
-  console.log("Hello World")
-  console.log(objProxy.name) // 100行
 })
 
 watchFn(function() {
-  console.log(objProxy.name, "demo function -------")
 })
 
 watchFn(function() {
-  console.log(objProxy.age, "age 发生变化是需要执行的----1")
 })
 
 watchFn(function() {
-  console.log(objProxy.age, "age 发生变化是需要执行的----2")
 })
 
 objProxy.name = "kobe"
@@ -90,11 +84,9 @@ const info = {
 }
 
 watchFn(function() {
-  console.log(info.address, "监听address变化+++++++++1")
 })
 
 watchFn(function() {
-  console.log(info.address, "监听address变化+++++++++2")
 })
 
 // obj对象

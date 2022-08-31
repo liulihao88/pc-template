@@ -7,7 +7,6 @@ function createFnArray() {
   // 小的数字类型, 在v8中成为Sim, 小数字 2的32次方
   var arr = new Array(1024 * 1024).fill(1)
   return function() {
-    console.log(arr.length)
   }
 }
 

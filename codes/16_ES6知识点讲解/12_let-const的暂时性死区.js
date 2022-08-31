@@ -1,14 +1,12 @@
 var foo = "foo"
 
 // if (true) {
-//   console.log(foo)
 
 //   let foo = "abc"
 // }
 
 
 function bar() {
-  console.log(foo)
 
   let foo = "abc"
 }

@@ -1,7 +1,6 @@
 // var obj = {
 //   name: "obj",
 //   foo: function() {
-//     console.log(this)
 //   }
 // }
 
@@ -18,7 +17,6 @@
 
 // 3.更明显的比较
 function foo() {
-  console.log(this)
 }
 
 var obj = {

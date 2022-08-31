@@ -2,7 +2,6 @@
 // var name = "why"
 
 // var foo = () => {
-//   console.log(this)
 // }
 
 // foo()

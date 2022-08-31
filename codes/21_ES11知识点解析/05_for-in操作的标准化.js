@@ -5,5 +5,4 @@ const obj = {
 }
 
 for (const item in obj) {
-  console.log(item)
 }

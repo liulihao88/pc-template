@@ -16,8 +16,6 @@ const obj = {}
 set.add(obj)
 set.add(obj)
 
-// console.log(set)
-
 // 3.对数组去重(去除重复的元素)
 const arr = [33, 10, 26, 30, 33, 26]
 // const newArr = []
@@ -30,33 +28,25 @@ const arr = [33, 10, 26, 30, 33, 26]
 const arrSet = new Set(arr)
 // const newArr = Array.from(arrSet)
 // const newArr = [...arrSet]
-// console.log(newArr)
 
 // 4.size属性
-console.log(arrSet.size)
 
 // 5.Set的方法
 // add
 arrSet.add(100)
-console.log(arrSet)
 
 // delete
 arrSet.delete(33)
-console.log(arrSet)
 
 // has
-console.log(arrSet.has(100))
 
 // clear
 // arrSet.clear()
-console.log(arrSet)
 
 // 6.对Set进行遍历
 arrSet.forEach(item => {
-  console.log(item)
 })
 
 for (const item of arrSet) {
-  console.log(item)
 }
 

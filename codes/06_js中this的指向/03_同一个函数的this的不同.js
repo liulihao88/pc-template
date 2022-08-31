@@ -2,7 +2,6 @@
 // 跟函数被调用的方式是有关系
 
 function foo() {
-  console.log(this)
 }
 
 // 1.直接调用这个函数

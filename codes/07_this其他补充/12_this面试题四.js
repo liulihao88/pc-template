@@ -6,12 +6,10 @@ function Person (name) {
     name: 'obj',
     foo1: function () {
       return function () {
-        console.log(this.name)
       }
     },
     foo2: function () {
       return () => {
-        console.log(this.name)
       }
     }
   }

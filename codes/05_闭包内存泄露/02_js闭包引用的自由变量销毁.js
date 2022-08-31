@@ -3,8 +3,6 @@ function foo() {
   var age = 18
 
   function bar() {
-    console.log(name)
-    console.log(age)
   }
 
   return bar

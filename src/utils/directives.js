@@ -215,7 +215,6 @@ Vue.directive("copy", {
         el.handler = () => {
             if (!el.$value) {
                 // 值为空的时候，给出提示。可根据项目UI仔细设计
-                console.log('无复制内容')
                 return
             }
             // 动态创建 textarea 标签
@@ -228,19 +227,10 @@ Vue.directive("copy", {
             textarea.value = el.$value
             // 将 textarea 插入到 body 中
             document.body.appendChild(textarea)
-            console.log('33333<<<  textarea  >>>33333');
-            console.log(textarea);
-            console.log('55555<<<  textarea.value  >>>55555');
-            console.log(textarea.value);
             // 选中值并复制
             textarea.select()
-            console.log('<<<  document  >>>');
-            console.log(JSON.stringify(document, null, '\t'));
             const result = document.execCommand('Copy')
-            console.log('22222<<<  result  >>>22222');
-            console.log(result);
             if (result) {
-                console.log('复制成功') // 可根据项目UI仔细设计
             }
             // document.body.removeChild(textarea)
         }
@@ -300,8 +290,6 @@ Vue.directive('my-model', {
         })
     },
     update: function(el) {
-        console.log('55555<<<  el  >>>55555');
-        console.log(el);
     }
 })
 
@@ -316,6 +304,9 @@ Vue.directive('show-tips', {
       textSpan.style.fontSize = curStyle.fontSize
       textSpan.style.fontWeight = curStyle.fontWeight
       textSpan.style.fontFamily = curStyle.fontFamily
+     console.table('%c 55555 ', 'background-image:color:transparent;color:blue;font-size:2em');
+     console.table(55555);
+        
       // 将容器插入body，如果不插入，offsetWidth为0
       document.body.appendChild(textSpan)
       // 设置新容器的文字

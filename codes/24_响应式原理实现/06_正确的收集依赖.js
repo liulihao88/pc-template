@@ -8,7 +8,6 @@ class Depend {
   }
 
   notify() {
-    console.log(this.reactiveFns)
     this.reactiveFns.forEach(fn => {
       fn()
     })
@@ -67,31 +66,18 @@ const objProxy = new Proxy(obj, {
 })
 
 watchFn(function() {
-  console.log("-----第一个name函数开始------")
-  console.log("你好啊, 李银河")
-  console.log("Hello World")
-  console.log(objProxy.name) // 100行
-  console.log("-----第一个name函数结束------")
 })
 
 watchFn(function() {
-  console.log(objProxy.name, "demo function -------")
 })
 
 watchFn(function() {
-  console.log(objProxy.age, "age 发生变化是需要执行的----1")
 })
 
 watchFn(function() {
-  console.log(objProxy.age, "age 发生变化是需要执行的----2")
 })
 
 watchFn(function() {
-  console.log(objProxy.name, "新函数")
-  console.log(objProxy.age, "新函数")
-})
-
-console.log("------------------------------改变obj的name值")
 
 objProxy.name = "kobe"
 // objProxy.name = "james"

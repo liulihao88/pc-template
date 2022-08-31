@@ -7,7 +7,6 @@ function Person(name, age, friends) {
 }
 
 Person.prototype.eating = function() {
-  console.log(this.name + " eating~")
 }
 
 // 子类: 特有属性和方法
@@ -23,11 +22,9 @@ function Student(name, age, friends, sno) {
 Student.prototype = Person.prototype
 
 Student.prototype.studying = function() {
-  console.log(this.name + " studying~")
 }
 
 
 // name/sno
 var stu = new Student("why", 18, ["kobe"], 111)
-console.log(stu)
 stu.eating()

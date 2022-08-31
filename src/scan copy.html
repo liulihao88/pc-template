@@ -141,8 +141,6 @@
         });
 
         function parseParam(url) {
-            console.log(`22222*****  url.split("?") ***** 69行 ~/test/testProject/pc-template/src/scan.html  19:33:05`);
-            console.log(url.split("?"));
 
             const paramsStr = url.split("?").pop(); // 将 ? 后面的字符串取出来
             const paramsArr = paramsStr.split("&"); // 将字符串以 & 分割后存到数组中
@@ -168,7 +166,6 @@
                     paramsObj[param] = true;
                 }
             });
-            console.log(paramsObj);
             return paramsObj;
         }
 
@@ -199,7 +196,6 @@
                 }
                 return value || 0;
             });
-            console.log(time_str);
             return time_str;
         }
 

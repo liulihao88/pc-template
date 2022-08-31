@@ -75,7 +75,6 @@ Module._extensions = {
   '.js' (module) {
     let script = fs.readFileSync(module.id, 'utf8');
     let templateFn = `(function (exports, module, req, __dirname, __filename){${script}})`
-    console.log(1111)
     let fn = vm.runInThisContext(templateFn);
     let exports = module.exports;
     let thisVal = exports;
@@ -125,7 +124,6 @@ function req(filename) {
   let module = new Module(filePath);
   // 把模块放入缓存
   Module._cache[filePath] = module
-  console.log('缓存测试')
   // 模块加载
   module._load();
   // 最后返回模块的 module.exports
@@ -135,4 +133,3 @@ function req(filename) {
 let a = req('./a');
 // a = require('./a');
 // a = require('./a');
-console.log(a,111)

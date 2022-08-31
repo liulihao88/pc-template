@@ -5,11 +5,6 @@ import Vue from 'vue'
 import Element from 'element-ui'
 // Element.Dialog.props.title = { default: '这是神马鬼' };
 
-console.log(`%c Element` + '', 'background-image:color:transparent;color:green;font-size:2em');
-console.log(Element);
-console.log(`%c Element.Input` + '', 'background-image:color:transparent;color:red;font-size:2em');
-console.log(Element.Input);
-
 import 'element-ui/lib/theme-chalk/index.css'
 Element.TableColumn.props.sortable.default = true;
 Element.Input.props.clearable = { default: true };

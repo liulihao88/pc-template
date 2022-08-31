@@ -3,17 +3,14 @@ var name = 'window'
 var person1 = {
   name: 'person1',
   foo1: function () {
-    console.log(this.name)
   },
-  foo2: () => console.log(this.name),
+  foo2: () =>
   foo3: function () {
     return function () {
-      console.log(this.name)
     }
   },
   foo4: function () {
     return () => {
-      console.log(this.name)
     }
   }
 }

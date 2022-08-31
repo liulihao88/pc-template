@@ -21,11 +21,9 @@ function Person(name, age, friends) {
 }
 
 Person.prototype.running = function() {
-  console.log("running~")
 }
 
 Person.prototype.eating = function() {
-  console.log("eating~")
 }
 
 
@@ -38,14 +36,10 @@ function Student(name, age, friends, sno, score) {
 inheritPrototype(Student, Person)
 
 Student.prototype.studying = function() {
-  console.log("studying~")
 }
 
 var stu = new Student("why", 18, ["kobe"], 111, 100)
-console.log(stu)
 stu.studying()
 stu.running()
 stu.eating()
-
-console.log(stu.constructor.name)
 

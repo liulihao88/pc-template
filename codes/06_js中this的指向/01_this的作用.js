@@ -3,39 +3,30 @@
 var obj100 = {
   name: "why",
   eating: function() {
-    console.log(this.name + "在吃东西")
   },
   running: function() {
-    console.log(this.name + "在跑步")
   },
   studying: function() {
-    console.log(this.name + "在学习")
   }
 }
 
 var info = {
   name: "why",
   eating: function() {
-    console.log(this.name + "在吃东西")
   },
   running: function() {
-    console.log(this.name + "在跑步")
   },
   studying: function() {
-    console.log(this.name + "在学习")
   }
 }
 
 var person = {
   name: "kobe",
   eating: function() {
-    console.log(this.name + "在吃东西")
   },
   running: function() {
-    console.log(this.name + "在跑步")
   },
   studying: function() {
-    console.log(this.name + "在学习")
   }
 }
 

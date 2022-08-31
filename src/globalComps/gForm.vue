@@ -65,8 +65,6 @@ export default {
   watch: {
     form: {
       handler(val) {
-        // console.log(`obj打印***** val ***** 72行 ~/test/testProject/pc-template/src/globalComps/gForm.vue  10:36:03`);
-        // console.log(JSON.stringify(val, null, '\t'));
         
         this.$emit('update:value', val);
         this.$emit('change', val)

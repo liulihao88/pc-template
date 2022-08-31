@@ -55,7 +55,7 @@
                 <mxCell id="19" value="AO(Activation Object)(foo)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="1" vertex="1">
                     <mxGeometry x="735" y="150" width="160" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="开始执行函数代码&lt;br&gt;console.log(name)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                <mxCell id="20" value="开始执行函数代码&lt;br&gt;
                     <mxGeometry x="315" y="305" width="175" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" value="当我们查找一个变量时,真实的查找路径是沿着作用域链来查找" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="1" vertex="1">
@@ -82,7 +82,7 @@
                 <mxCell id="28" value="VO(variable Object): AO&lt;br&gt;scope chain: AO + ParentScope" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="310" y="50" width="175" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="开始执行函数代码&lt;br&gt;console.log(name)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                <mxCell id="29" value="开始执行函数代码&lt;br&gt;
                     <mxGeometry x="310" y="110" width="175" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="30" value="{&lt;br&gt;}" style="rounded=1;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">

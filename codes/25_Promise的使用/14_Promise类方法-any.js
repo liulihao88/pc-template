@@ -21,8 +21,5 @@ const p3 = new Promise((resolve, reject) => {
 
 // any方法
 Promise.any([p1, p2, p3]).then(res => {
-  console.log("res:", res)
-}).catch(err => {
-  console.log("err:", err.errors)
 })
 

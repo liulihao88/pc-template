@@ -70,7 +70,7 @@
                 <mxCell id="43" value="VO: AO&lt;br&gt;scope chain: VO+parentScope" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
                     <mxGeometry x="260" y="280" width="180" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" value="console.log(&quot;bar&quot;,&quot;foo&quot;)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                <mxCell id="44" value="
                     <mxGeometry x="260" y="340" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" value="parentScope: foo ao" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">

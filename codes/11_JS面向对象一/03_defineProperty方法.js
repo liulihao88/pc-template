@@ -9,6 +9,3 @@ Object.defineProperty(obj, "height", {
   value: 1.88
 })
 
-console.log(obj)
-console.log(obj.height)
-

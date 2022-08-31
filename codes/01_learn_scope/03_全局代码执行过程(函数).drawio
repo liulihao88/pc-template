@@ -55,7 +55,7 @@
                 <mxCell id="19" value="AO(Activation Object)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
                     <mxGeometry x="600" y="140" width="130" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="开始执行函数代码&lt;br&gt;console.log(name)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                <mxCell id="20" value="开始执行函数代码&lt;br&gt;
                     <mxGeometry x="310" y="290" width="170" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" value="当我们查找一个变量时,真实的查找路径是沿着作用域链来查找" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">

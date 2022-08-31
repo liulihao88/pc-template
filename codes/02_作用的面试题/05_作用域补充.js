@@ -3,4 +3,3 @@ function foo() {
 }
 
 foo()
-console.log(m)

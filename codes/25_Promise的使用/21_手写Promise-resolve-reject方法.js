@@ -107,11 +107,9 @@ class HYPromise {
 }
 
 HYPromise.resolve("Hello World").then(res => {
-  console.log("res:", res)
 })
 
 HYPromise.reject("Error Message").catch(err => {
-  console.log("err:", err)
 })
 
 

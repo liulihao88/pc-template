@@ -6,5 +6,3 @@ var obj = {
 Object.defineProperty(obj, "address", {
   value: "北京市"
 })
-
-console.log(obj)

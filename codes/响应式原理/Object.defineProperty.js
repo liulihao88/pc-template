@@ -5,31 +5,24 @@ const obj = {
 
 // Object.defineProperty(obj, 'name', {
 //     set: function() {
-//         console.log(`*****<<<  监听到obj对象被访问了  8行 ~/test/testProject/pc-template/CODE/响应式原理/Object.defineProperty.js  11:50:35`);
 //     },
 //     get: function() {
-//         console.log(`*****<<<  监听到obj对象被获取了  11行 ~/test/testProject/pc-template/CODE/响应式原理/Object.defineProperty.js  11:50:45`);
 //     }
 // })
 
 Object.keys(obj).forEach(key =>{
     let value = obj[key]
-    console.log(`22222***** key ***** 17行 ~/test/testProject/pc-template/CODE/响应式原理/Object.defineProperty.js  11:54:29`);
-    console.log(key);
     Object.defineProperty(obj, key, {
         get: function(){
-            console.log('set', key)
             return value
         },
         set: function(newValue){
-            console.log('get', key)
             value = newValue
         }
     })
 })
 
 obj.name="凌云"
-console.log(obj.name)
 
 /**
 ~/test/testProject/pc-template/CODE/响应式原理

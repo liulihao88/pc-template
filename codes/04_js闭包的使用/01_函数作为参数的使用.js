@@ -1,5 +1,4 @@
 // function foo(arg) {
-//   console.log("foo", arg)
 // }
 
 // foo(123)
@@ -10,14 +9,12 @@
 // }
 
 // function bar() {
-//   console.log("bar")
 // }
 
 // foo(bar)
 
 // 案例
 function calc(num1, num2, calcFn) {
-  console.log(calcFn(num1, num2))
 }
 
 function add(num1, num2) {

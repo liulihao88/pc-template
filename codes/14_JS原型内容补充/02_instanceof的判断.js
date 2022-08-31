@@ -25,11 +25,6 @@ function Student() {
 
 inheritPrototype(Student, Person)
 
-console.log(Person.prototype.__proto__)
-
 var stu = new Student()
-console.log(stu instanceof Student) // true
-console.log(stu instanceof Person) // true
-console.log(stu instanceof Object) // true
 
 

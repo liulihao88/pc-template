@@ -21,5 +21,3 @@ function createObject2(o) {
 
 // var info = createObject2(obj)
 var info = Object.create(obj)
-console.log(info)
-console.log(info.__proto__)

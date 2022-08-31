@@ -16,5 +16,4 @@ class Person {
 
 var p1 = new Person("why", 18)
 var p2 = new Person("kobe", 30)
-console.log(p1, p2)
 

@@ -58,9 +58,6 @@ resJson.data.forEach(v => {
     }
 })
 
-console.log(`11111<<<  resAllComp  >>>11111`);
-console.log(resAllComp);
-
 let res = a.map(v => {
     // if (resAllComp.indexOf(v.comp) === -1) {
     //     return false
@@ -75,8 +72,6 @@ let res = a.map(v => {
         return v
     // }
 })
-console.log('<<<  res  >>>');
-console.log(JSON.stringify(res, null, '\t'));
 
 
 // 下面是返回值

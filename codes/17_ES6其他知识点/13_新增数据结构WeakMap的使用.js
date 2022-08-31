@@ -12,12 +12,7 @@ weakMap.set(obj, "aaa")
 
 // 3.常见方法
 // get方法
-console.log(weakMap.get(obj))
 
 // has方法
-console.log(weakMap.has(obj))
 
-// delete方法
-console.log(weakMap.delete(obj))
-// WeakMap { <items unknown> }
-console.log(weakMap)
+// delete方法unknown> }

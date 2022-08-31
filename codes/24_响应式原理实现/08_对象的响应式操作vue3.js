@@ -87,7 +87,6 @@ const infoProxy = reactive({
 })
 
 watchFn(() => {
-  console.log(infoProxy.address)
 })
 
 infoProxy.address = "北京市"
@@ -97,7 +96,6 @@ const foo = reactive({
 })
 
 watchFn(() => {
-  console.log(foo.name)
 })
 
 foo.name = "bar"

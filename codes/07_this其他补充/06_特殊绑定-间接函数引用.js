@@ -3,7 +3,6 @@
 var obj1 = {
   name: "obj1",
   foo: function() {
-    console.log(this)
   }
 }
 

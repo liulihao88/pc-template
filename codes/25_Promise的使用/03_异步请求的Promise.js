@@ -22,7 +22,4 @@ function requestData(url,) {
 // main.js
 const promise = requestData("coderwhy")
 promise.then((res) => {
-  console.log("请求成功:", res)
-}, (err) => {
-   console.log("请求失败:", err)
 })

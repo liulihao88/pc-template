@@ -82,8 +82,6 @@ const objProxy = new Proxy(obj, {
 
 // watchFn
 watchFn(() => {
-  console.log(objProxy.name, "-------")
-  console.log(objProxy.name, "+++++++")
 })
 
 objProxy.name = "kobe"

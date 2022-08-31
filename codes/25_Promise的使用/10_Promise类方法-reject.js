@@ -8,7 +8,4 @@
 const promise = Promise.reject(new Promise(() => {}))
 
 promise.then(res => {
-  console.log("res:", res)
-}).catch(err => {
-  console.log("err:", err)
 })

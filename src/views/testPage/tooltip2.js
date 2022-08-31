@@ -46,10 +46,6 @@
                     var oTipTop = eval(position.top - $(oTip).outerHeight() - 8);
                     var oTipLeft = position.left;
                     $(oToolTip).css("top", oTipTop + "px").css("left", oTipLeft + "px");
-
-                    console.log(`*****<<<  111  47行 ~/test/testProject/pc-template/src/views/testPage/tooltip2.js  21:08:36`);
-                    console.log(`22222***** $('#myTitle') ***** 48行 ~/test/testProject/pc-template/src/views/testPage/tooltip2.js  21:09:07`);
-                    console.log($('#myTitle'));
                    
 
                     $(this).mouseleave(function() {
@@ -57,11 +53,9 @@
                     });
 
                     $('#myTitle').mouseenter(function(e) {
-                        console.log(`*****<<<  title进入  50行 ~/test/testProject/pc-template/src/views/testPage/tooltip2.js  21:06:25`);
                         clearTimeout(myTimer)
                     })
                     $('#myTitle').mouseleave(function(e) {
-                        console.log(`*****<<<  title离开  54行 ~/test/testProject/pc-template/src/views/testPage/tooltip2.js  21:08:02`);
                         e.preventDefault()
                         leave()
                     })
@@ -72,8 +66,6 @@
 
 
             function leave() {
-                console.log(`*****<<<  进入  58行 ~/test/testProject/pc-template/src/views/testPage/tooltip2.js  21:04:22`);
-                console.log(`%c $('#myTitle').length` + '', 'background:#000;color:#bada55', $('#myTitle').length);
 
                 if ($('#myTitle').length === 0) {
                     return

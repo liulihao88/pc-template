@@ -24,9 +24,6 @@ Object.defineProperties(obj, {
 })
 
 // 获取某一个特性属性的属性描述符
-console.log(Object.getOwnPropertyDescriptor(obj, "name"))
-console.log(Object.getOwnPropertyDescriptor(obj, "age"))
 
 // 获取对象的所有属性描述符
-console.log(Object.getOwnPropertyDescriptors(obj))
 

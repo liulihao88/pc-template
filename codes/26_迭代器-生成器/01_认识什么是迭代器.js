@@ -20,13 +20,3 @@ const namesIterator = {
     }
   }
 }
-
-console.log(namesIterator.next())
-console.log(namesIterator.next())
-console.log(namesIterator.next()) // { done: false, value: "nba" }
-console.log(namesIterator.next()) // { done: true, value: undefined }
-console.log(namesIterator.next()) // { done: true, value: undefined }
-console.log(namesIterator.next()) // { done: true, value: undefined }
-console.log(namesIterator.next())
-console.log(namesIterator.next())
-console.log(namesIterator.next())

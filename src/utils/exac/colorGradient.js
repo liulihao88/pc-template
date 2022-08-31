@@ -80,21 +80,15 @@ function rgbToHex(rgb) {
 	} else if (reg.test(_this)) {
 		let aNum = _this.replace(/#/, "").split("");
 		if (aNum.length === 6) {
-            console.log('22222<<<  _this  >>>22222');
-            console.log(_this);
 			return _this;
 		} else if (aNum.length === 3) {
 			let numHex = "#";
 			for (let i = 0; i < aNum.length; i += 1) {
 				numHex += (aNum[i] + aNum[i]);
 			}
-            console.log('33333<<<  numHex  >>>33333');
-            console.log(numHex);
 			return numHex;
 		}
 	} else {
-        console.log('33333<<<  _this  >>>33333');
-        console.log(_this);
 		return _this;
 	}
 }
@@ -126,8 +120,6 @@ function colorToRgba(color, alpha = 0.3) {
 		}
 		// return sColorChange.join(',')
         let res = 'rgba(' + sColorChange.join(',') + ',' + alpha + ')';
-        console.log('44444<<<  res  >>>44444');
-        console.log(res);
 		return res;
 	} 
 	else {

@@ -78,7 +78,6 @@ export default {
   methods: {
     confirmHandle() {
       this.$emit('confirm');
-      console.log("🚀 ~ file: gDialog.vue ~ line 79 ~ confirmHandle ~ confirm", confirm)
     },
     cancelHandle() {
       if (typeof this.cancel === 'function') {

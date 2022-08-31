@@ -6,6 +6,3 @@ function foo() {
 }
 
 foo()
-
-// console.log(a)
-console.log(b)

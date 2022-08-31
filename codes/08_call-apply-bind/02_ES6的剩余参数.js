@@ -1,6 +1,5 @@
 // rest parameters
 function sum(...nums) {
-  console.log(nums)
 }
 
 sum(10)

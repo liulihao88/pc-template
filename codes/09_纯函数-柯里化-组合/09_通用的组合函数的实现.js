@@ -30,7 +30,5 @@ function threeBle(v) {
 
 var newFn = hyCompose(double, square, threeBle)
 var newFn2 = hyCompose(double, square, threeBle, double)
-console.log(newFn(10))
-console.log(newFn2(10))
 
 

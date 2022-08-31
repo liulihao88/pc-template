@@ -13,7 +13,6 @@
 
 // // obj = {}
 // obj.foo = "aaa"
-// console.log(obj.foo)
 
 
 // 注意事项二: 通过let/const定义的变量名是不可以重复定义
@@ -23,5 +22,3 @@
 let foo = "abc"
 // SyntaxError: Identifier 'foo' has already been declared
 let foo = "cba"
-
-console.log(foo)

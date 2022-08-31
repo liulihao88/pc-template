@@ -39,6 +39,3 @@ function getTrees(pid = '') {
         })
     }
 }
-
-console.log(`obj打印***** getTrees() ***** 36行 ~/test/testProject/pc-template/src/views/exercise/test2.js  12:41:23`);
-console.log(JSON.stringify(getTrees(), null, '\t'));

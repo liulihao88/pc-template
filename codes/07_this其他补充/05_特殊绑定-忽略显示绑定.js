@@ -1,5 +1,4 @@
 function foo() {
-  console.log(this)
 }
 
 foo.apply("abc")

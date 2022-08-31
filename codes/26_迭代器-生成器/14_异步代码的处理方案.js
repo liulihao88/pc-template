@@ -20,7 +20,6 @@ function requestData(url) {
 // requestData("why").then(res => {
 //   requestData(res + "aaa").then(res => {
 //     requestData(res + "bbb").then(res => {
-//       console.log(res)
 //     })
 //   })
 // })
@@ -32,7 +31,6 @@ function requestData(url) {
 // }).then(res => {
 //   return requestData(res + "bbb")
 // }).then(res => {
-//   console.log(res)
 // })
 
 // 3.第三种方案: Promise + generator实现
@@ -41,7 +39,6 @@ function* getData() {
   const res2 = yield requestData(res1 + "aaa")
   const res3 = yield requestData(res2 + "bbb")
   const res4 = yield requestData(res3 + "ccc")
-  console.log(res4)
 }
 
 // function* getDepartment() {
@@ -89,7 +86,6 @@ async function getData() {
   const res2 = await requestData(res1 + "aaa")
   const res3 = await requestData(res2 + "bbb")
   const res4 = await requestData(res3 + "ccc")
-  console.log(res4)
 }
 
 getData()

@@ -5,7 +5,6 @@ class Person {
 function mixinRunner(BaseClass) {
   class NewClass extends BaseClass {
     running() {
-      console.log("running~")
     }
   }
   return NewClass
@@ -14,7 +13,6 @@ function mixinRunner(BaseClass) {
 function mixinEater(BaseClass) {
   return class extends BaseClass {
     eating() {
-      console.log("eating~")
     }
   }
 }

@@ -5,8 +5,6 @@ function add(x, y, z) {
   return x + y + z
 }
 
-console.log(add(10, 20, 30))
-
 
 function sum(x) {
   x = x + 2
@@ -21,6 +19,4 @@ function sum(x) {
     }
   }
 }
-
-console.log(sum(10)(20)(30))
 

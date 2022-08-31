@@ -5,5 +5,3 @@ function foo() {
 }
 
 foo()
-
-console.log(n)

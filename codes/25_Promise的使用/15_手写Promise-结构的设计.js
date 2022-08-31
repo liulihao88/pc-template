@@ -14,7 +14,6 @@ class HYPromise {
       if (this.status === PROMISE_STATUS_PENDING) {
         this.status = PROMISE_STATUS_FULFILLED
         this.value = value
-        console.log("resolve被调用")
       }
     }
 
@@ -22,7 +21,6 @@ class HYPromise {
       if (this.status === PROMISE_STATUS_PENDING) {
         this.status = PROMISE_STATUS_REJECTED
         this.reason = reason
-        console.log("reject被调用")
       }
     }
 
@@ -31,7 +29,6 @@ class HYPromise {
 }
 
 const promise = new HYPromise((resolve, reject) => {
-  console.log("状态pending")
   resolve(1111)
   reject(2222)
 })

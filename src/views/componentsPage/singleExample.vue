@@ -21,11 +21,6 @@ export default {
   methods: {
     t1() {
       this.loginLayer = this.loginLayerHandler()
-      console.log(
-        `%c 111=>25行 src/views/componentsPage/singleExample.vue this.loginLayer. `,
-        "background:#000;color:#bada55",
-        this.loginLayer
-      )
 
       this.loginLayer.style.display = "block"
     },
@@ -42,9 +37,6 @@ export default {
         document.body.appendChild(div)
         return div
       } else {
-        console.log(
-          `*****<<<  哈哈  46行 ~/test/testProject/pc-template/src/views/componentsPage/singleExample.vue  16:01:58`
-        )
         return this.loginLayer;
       }
     },
