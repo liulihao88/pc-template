@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button @click="t1" type="primary">测试11</el-button>
-    <el-button @click="t2" type="info">测试22322</el-button>
+    <el-button @click="t2" type="info">测试222322</el-button>
   </div>
 </template>
 
