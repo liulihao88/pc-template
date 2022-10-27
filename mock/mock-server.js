@@ -1,15 +1,15 @@
-const chokidar = require('chokidar')
-const bodyParser = require('body-parser')
-const chalk = require('chalk')
-const path = require('path')
-const Mock = require('mockjs')
+const chokidar = require("chokidar")
+const bodyParser = require("body-parser")
+const chalk = require("chalk")
+const path = require("path")
+const Mock = require("mockjs")
 
-const mockDir = path.join(process.cwd(), 'mock')
+const mockDir = path.join(process.cwd(), "mock")
 
 function registerRoutes(app) {
   let mockLastIndex
-  const { mocks } = require('./index.js')
-  const mocksForServer = mocks.map(route => {
+  const { mocks } = require("./index.js")
+  const mocksForServer = mocks.map((route) => {
     return responseFake(route.url, route.type, route.response)
   })
   for (const mock of mocksForServer) {
@@ -19,12 +19,12 @@ function registerRoutes(app) {
   const mockRoutesLength = Object.keys(mocksForServer).length
   return {
     mockRoutesLength: mockRoutesLength,
-    mockStartIndex: mockLastIndex - mockRoutesLength
+    mockStartIndex: mockLastIndex - mockRoutesLength,
   }
 }
 
 function unregisterRoutes() {
-  Object.keys(require.cache).forEach(i => {
+  Object.keys(require.cache).forEach((i) => {
     if (i.includes(mockDir)) {
       delete require.cache[require.resolve(i)]
     }
@@ -35,32 +35,37 @@ function unregisterRoutes() {
 const responseFake = (url, type, respond) => {
   return {
     url: new RegExp(`${process.env.VUE_APP_BASE_API}${url}`),
-    type: type || 'get',
+    type: type || "get",
     response(req, res) {
-      res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
-    }
+      res.json(
+        Mock.mock(respond instanceof Function ? respond(req, res) : respond)
+      )
+    },
   }
 }
 
-module.exports = app => {
+module.exports = (app) => {
   // parse app.body
   // https://expressjs.com/en/4x/api.html#req.body
   app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }))
+  app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  )
 
   const mockRoutes = registerRoutes(app)
   var mockRoutesLength = mockRoutes.mockRoutesLength
   var mockStartIndex = mockRoutes.mockStartIndex
 
   // watch files, hot reload mock server
-  chokidar.watch(mockDir, {
-    ignored: /mock-server/,
-    ignoreInitial: true
-  }).on('all', (event, path) => {
-    if (event === 'change' || event === 'add') {
-      try {
+  chokidar
+    .watch(mockDir, {
+      ignored: /mock-server/,
+      ignoreInitial: true,
+    })
+    .on("all", (event, path) => {
+      if (event === "change" || event === "add") {
         // remove mock routes stack
         app._router.stack.splice(mockStartIndex, mockRoutesLength)
 
@@ -71,6 +76,5 @@ module.exports = app => {
         mockRoutesLength = mockRoutes.mockRoutesLength
         mockStartIndex = mockRoutes.mockStartIndex
       }
-    }
-  })
+    })
 }

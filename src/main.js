@@ -15,8 +15,6 @@ import store from './store'
 import router from './router'
 import * as $pub from 'u/gFunc'
 
-const _ = require('lodash')
-
 import KdComponents from '@kd/components'
 import '@kd/components/dist/kd-components.css'
 

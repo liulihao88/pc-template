@@ -1,39 +1,42 @@
 <template>
-  <div>
-    <el-button @click="t1" type="primary">测试11</el-button>
-    <el-button @click="t2" type="info">测试22222322</el-button>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "Test5",
+  name: "T2",
+  components: {},
   props: {},
   data() {
-    return {
-      num: 123,
-      str: "hello world",
-      arr: [11, 22, 33],
-      obj: {
-        name: "andy",
-        age: 18,
-      },
-      date: new Date(),
-    }
+    return {}
   },
-  components: {},
   computed: {},
   watch: {},
   created() {
-    this.t1()
+    this.init()
   },
   mounted() {},
   methods: {
-    t1() {
-      console.log("t1")
-    },
-    t2() {
-      console.log("t2")
+    init() {
+      let str = "我最喜欢的书是《乱世佳人》和《安娜.卡列尼娜》;"
+      let reg = /(《)(.*?)(》)/gi
+
+      let res = str.replace(reg, (...a) => {
+        console.log(
+          `%c 111=>25行 src/views/testPage/t2.vue a `,
+          "background:#000;color:#bada55",
+          a
+        )
+        if (a[2]) {
+          return a[2]
+        }
+      })
+
+      console.log(
+        `%c 111=>6行 src/views/exercise/e1.js res `,
+        "background:#000;color:#bada55",
+        res
+      )
     },
   },
 }

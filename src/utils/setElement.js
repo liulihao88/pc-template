@@ -9,7 +9,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 Element.TableColumn.props.sortable.default = true;
 Element.Input.props.clearable = { default: true };
 // Element.Input.props.size = { default: 'mini' };
-Element.Input.props.size = 'mini';
 Element.Form.props.labelPosition = { default: 'left' };
 Element.Form.props.labelWidth = { default: '160px' };
 
@@ -20,7 +19,5 @@ Element.Col.props.span = { default: 12 };
 // Element.Input.props.suffixIcon = { default: 'el-icon-edit' };
 
 Element.TableColumn.props.showOverflowTooltip = { type: Boolean, default: true }
-Vue.use(Element, {
-    size: 'mini'
-})
+Vue.use(Element)
 

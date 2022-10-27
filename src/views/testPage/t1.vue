@@ -1,21 +1,7 @@
 <template>
-  <div class="box">
-    <!-- background: #365edf; height: 24px; line-height: 24px; margin-top: 40px padding: 8px; font-size: 40px;-->
-    <div class="bg-blue h3 lh3 mt5 p ft-40 d-ib w-322">哈哈1</div>
-    <!-- height: 30%; width: 30%; margin-left: 30px; padding: 50px 0;-->
-    <div class="h-30% w-20% m-l-30 p-tb-50 d-ib ac">哈哈2</div>
-    <!-- color: #ffb51f; position: relative; top: 2px; left: 100px; font-weight: bold-->
-    <div class="cl-yellow po-r t-2 l-100 bold o-h">哈哈3</div>
-    <div class="f-ar f-wrap w-100%">
-      <div class="f-2 cl-65 b-b-10">左边0.15透明度 border-bottom: 10px</div>
-      <div class="f-1 o-4 b">我是右边0.4的透明度</div>
-    </div>
-
-    <div class="dd">我原本是黄色背景</div>
-    <div class="aa">这里是style里的红色</div>
-    <div class="bg-blue cl-green">我原本是绿色背景, 但是动态改为了红色</div>
-    <el-button @click="changeColor" type="primary">随机改变颜色</el-button>
-    <el-button @click="changeColor" type="info">用换肤改变颜色</el-button>
+  <div>
+    <el-button @click="t1" type="primary">测试1</el-button>
+    <el-button @click="t2" type="info">测试2</el-button>
   </div>
 </template>
 
@@ -25,39 +11,49 @@ export default {
   props: {},
   data() {
     return {
-      age: {
-        name: "a",
+      num: 123,
+      isShow: false,
+      str: "hello world",
+      arr: [11, 22, 33],
+      obj: {
+        name: "andy",
+        age: 18,
+        objArr: [{ chName: "凌云", height: 188 }],
       },
+      date: new Date(),
     }
   },
   components: {},
   computed: {},
   watch: {},
-
   created() {
-    this.init()
+    this.t1()
   },
   mounted() {},
   methods: {
-    changeColor() {
-      let cl = this.$pub.$getRandomColor()
-      document.body.style.setProperty("--blue", cl)
+    t1() {
+      console.log(`%c 111=>35行 src/views/testPage/t1.vue this.add(10,20,30) `, 'background:#000;color:#bada55', this.add(10,20,30));
+      
+      console.log("t1")
+      let curry = this.$pub.lhCurrying(this.add)
+      console.log(`%c 222=>39行 src/views/testPage/t1.vue curry `, 'background:#000;color:#bada55', curry);
+      
+      curry(10)(20)(30)
     },
-    init() {
-      document.body.style.setProperty("--yellow", "pink")
-      // document.body.style.setProperty("--blue", "red")
+    t2() {
+      console.log("t2")
+    },
+    add(a, b, c) {
+      let res = a + b + c
+      console.log(
+        `%c 111=>3行 src/views/exercise/e1.js res `,
+        "background:#000;color:#bada55",
+        res
+      )
+
+      return res
     },
   },
 }
 </script>
-<style scoped lang="scss">
-// .aa {
-//   background: var(--red);
-// }
-// .box ::v-deep .el-button--info{
-//   background: var(--blue);
-// }
-// .dd{
-//   background: $blue;
-// }
-</style>
+<style scoped lang="scss"></style>

@@ -349,5 +349,21 @@ export function mergeFunc(str = 2) {
 }
 
 
-
+// 分装函数: 自动转化科里化过程
+export function lhCurrying(fn) {
+    function curryFn(...args) {
+      // 两类操作:
+      // 第一类操作: 继续返回一个新的函数, 继续接受参数
+      // 第二类操作: 执行执行fn的函数
+      if (args.length >= fn.length) {
+        // 执行第二类
+        return fn.apply(this, args)
+      } else {
+        // 执行第一类
+        return function (...newArgs) {
+          return curryFn.apply(this, args.concat(newArgs))
+        }
+      }
+    }
+  }
 

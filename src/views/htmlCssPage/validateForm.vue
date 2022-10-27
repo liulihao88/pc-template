@@ -8,7 +8,6 @@
         plain
         class="a_n"
         icon="el-icon-plus"
-        size="mini"
         @click="addFrame"
       >新增</el-button>
       <el-form :model="form" ref="formRef">

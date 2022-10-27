@@ -19,6 +19,7 @@ export default {
   
   },
   created() {
+this.ini();
 
   },
   mounted() {
