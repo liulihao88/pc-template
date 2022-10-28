@@ -1,5 +1,4 @@
 const Mock = require('mockjs')
-const { param2Obj } = require('./utils')
 
 const user = require('./user')
 const table = require('./table')
@@ -36,7 +35,7 @@ function mockXHR() {
         result = respond({
           method: type,
           body: JSON.parse(body),
-          query: param2Obj(url)
+          query: $pub.param2Obj(url)
         })
       } else {
         result = respond
