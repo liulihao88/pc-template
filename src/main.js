@@ -38,6 +38,8 @@ Vue.prototype.$echarts = echarts
 import { chaining } from 'u/gInstall'
 Vue.use(chaining)
 
+import '@/views/exercise/e2.js'
+
 
 import '@/icons' // icon
 import '@/permission' // permission control
