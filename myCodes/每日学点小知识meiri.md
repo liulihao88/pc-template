@@ -47,3 +47,59 @@ if (flag) {
 }
 ```
 
+## 4. DefilePlugin的使用
+> DefinePlugin允许在编译时创建配置的全局常量, 是一个webpack内置的插件(不需要单独安装). 在vue.config.js中书写以下代码. 
+
+```js
+const {DefinePlugin} = require('webpack')
+
+module.exports = {
+    // 其他省略
+    new DefinePlugin({
+        ANDY: '"_ANDY"',
+        __DEV2: '18 === 18',
+        __DEV: 'new Date()'
+    })
+}
+```
+
+## 5. vscode中command+鼠标左键跳转文件
++ 项目根目录下配置`jsconfig.json`
+```javascript
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "u/*": ["src/utils/*"],
+      "v/*": ["src/views/*"],
+      "s/*": ["src/styles/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
++ jsconfig.json配置以上的参数, 无法让省略了.vue的文件跳转; 这时可以安装vue-peek插件即可
+```
+
+## 6. 如果有a.js和b.js需要导出, 很多框架里都会写一个index.js统一导出. 方法及简写如下
+```js
+// import {sum, substract} from './e2.js'
+// import {multy} from './e1.js'
+
+// export {
+//     sum, 
+//     substract,
+//     multy
+// }
+
+// 优化一:
+// export {sum, substract} from './e2.js'
+// export {multy} from './e1.js
+
+// 优化二:
+export * from './e1.js'
+export * from './e2.js'
+```
+
+
+

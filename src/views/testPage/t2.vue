@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>我是t2</div>
 </template>
 
 <script>
@@ -18,6 +18,8 @@ export default {
   mounted() {},
   methods: {
     init() {
+      console.log(`%c 555=>21行 src/views/testPage/t2.vue _andy `, 'background:#000;color:#bada55', _andy);
+      
       let str = "我最喜欢的书是《乱世佳人》和《安娜.卡列尼娜》;"
       let reg = /(《)(.*?)(》)/gi
 

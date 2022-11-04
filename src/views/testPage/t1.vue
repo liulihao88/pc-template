@@ -33,13 +33,17 @@
         ></kd-select>
       </template>
     </kd-filter-table>
+
+    <t-2></t-2>
   </div>
 </template>
 
 <script>
+import T2 from './t2';
+import { uuid } from '@/utils/gFunc'
 export default {
   name: "T1",
-  components: {},
+  components: {T2},
   props: {},
   data() {
     return {

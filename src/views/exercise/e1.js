@@ -1,2 +1,3 @@
-export const name="abd"
-export const age=18
+export function multy(a,b){
+    return a*b
+}
