@@ -9,6 +9,7 @@ import '@/utils/setElement'
 import '@/styles/index.scss' // global css
 import '@/styles/gStyle.scss' // 自定义的全局css
 import 'u/directives.js'
+import '@/views/exercise/e2.js'
 
 import App from './App'
 import store from './store'

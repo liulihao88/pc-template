@@ -1,10 +1,11 @@
 <template>
   <div>
-    t1
+    t111
   </div>
 </template>
 
 <script>
+import requestNew from '@/utils/requestNew'
 export default {
   name: "T1",
   components: {
@@ -18,10 +19,15 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
+  created() {
+    
+    
+  },
   mounted() {},
   methods: {
-
+    requestNew() {
+      
+    },
   }
 }
 </script>

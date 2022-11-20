@@ -1,14 +1,23 @@
 <template>
-  <div>我是t2</div>
+  <div>
+    t2
+  </div>
 </template>
 
 <script>
+import ccc from '@/views/exercise/e1.js'
+console.log(`%c 666=>9行 src/views/testPage/t2.vue ccc `, 'background:#000;color:#bada55', ccc);
+
 export default {
   name: "T2",
-  components: {},
+  components: {
+     
+  },
   props: {},
   data() {
-    return {}
+    return {
+       
+    }
   },
   computed: {},
   watch: {},
@@ -17,30 +26,17 @@ export default {
   },
   mounted() {},
   methods: {
-    init() {
-      console.log(`%c 555=>21行 src/views/testPage/t2.vue _andy `, 'background:#000;color:#bada55', _andy);
+    init(){
+      let r1 = new ccc('a')
+      console.log("r1", r1);
+      let r2 = new ccc('b')
+      console.log("r2", r2);
       
-      let str = "我最喜欢的书是《乱世佳人》和《安娜.卡列尼娜》;"
-      let reg = /(《)(.*?)(》)/gi
-
-      let res = str.replace(reg, (...a) => {
-        console.log(
-          `%c 111=>25行 src/views/testPage/t2.vue a `,
-          "background:#000;color:#bada55",
-          a
-        )
-        if (a[2]) {
-          return a[2]
-        }
-      })
-
-      console.log(
-        `%c 111=>6行 src/views/exercise/e1.js res `,
-        "background:#000;color:#bada55",
-        res
-      )
-    },
-  },
+      
+    }
+  }
 }
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+
+</style>
