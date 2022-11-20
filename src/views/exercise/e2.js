@@ -14,7 +14,7 @@ console.log(`%c 333=>7行 src/views/exercise/e2.js a `, 'background:#000;color:#
 a.request({
   url: 'andy', 
   method: 'post'
-})
+}) 
 
 
 
