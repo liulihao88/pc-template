@@ -12,7 +12,7 @@ let a = new requestNew('ccc')
 console.log(`%c 333=>7行 src/views/exercise/e2.js a `, 'background:#000;color:#bada55', a);
 
 a.request({
-  url: 'andy',
+  url: 'andy', 
   method: 'post'
 })
 
