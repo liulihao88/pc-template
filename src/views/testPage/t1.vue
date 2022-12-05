@@ -30,7 +30,7 @@
           {{ mBatchTitle("移动", selectList) }}
         </el-button>
       </template>
-      <template #search="{ search }">
+      <template #search="{ search }"> 
         <kd-input v-model="search.name" title="任务英文名称"></kd-input>
       </template>
     </kd-filter-table>
