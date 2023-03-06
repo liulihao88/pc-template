@@ -37,7 +37,6 @@ async function async2() {
     resolve(88);
     console.log(13);
   }).then(function(res) {
-    console.log(`%c 444=>33行 markdown/code/28_事件循环-队列/自定义循环.js res `, 'background:#000;color:#bada55', res);
   }).catch((err) => {
     console.log(err);
   });

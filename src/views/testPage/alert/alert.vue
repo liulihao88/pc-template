@@ -18,7 +18,6 @@ function getUuid() {
 export default {
   data() {
     //   通知可以是多个，我们⽤⼀个数组 notices 来管理每条通知
-
     return { notices: [] };
   },
 

@@ -20,6 +20,8 @@ import KdComponents from '@kd/components'
 import '@kd/components/dist/kd-components.css'
 
 Vue.use(KdComponents)
+import Alert from "@/views/testPage/alert/alert.js";
+Vue.prototype.$Alert = Alert 
 
 
 // for(let key in $pub){

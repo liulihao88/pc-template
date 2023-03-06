@@ -16,7 +16,7 @@ function _tooltipInit() {
             $('body #myTitle').html(tipText)
             $('#myTitle').append(oPointer)
         } else {
-            $('body').append('<div id="myTitle" style="transform-origin: center bottom; z-index: 2065; position:fixed; top: 300px; left:300px; background: #000; color: #fff; padding:4px; border-radius: 2px;" >' + tipText + '</div>')
+            $('body').append('<div id="myTitle" style="transform-origin: center bottom; z-index: 2065; position:fixed; top: 300px; left:300px; background: #000; color: #fff; paffing:4px; border-radius: 2px;" >' + tipText + '</div>')
             $('#myTitle').append(oPointer)
         }
         $('#myTitle').css({

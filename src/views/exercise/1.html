@@ -1,17 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+    <style>
+      .is-orange {
+        background: orange !important;
+      }
+    </style>
+  </head>
 
-<body>
-    <script src="../../../markdown/code/28_事件循环-队列/自定义循环.js"></script>
+  <body>
+    <button id="tj">提交</button>
+    <div id="cc">22</div>
+    <div class="dest_tab_box" style="width: 97.5%">
+      <div class="col_tit_box">
+        <div class="half_title_box">
+          <span>DB表字段</span>
+          <div
+            class="fm_select addcol"
+            value="sysAddDbName,sysAddTableName,sysAddCurrentTime"
+          >
+            <span
+              ><i class="iconfont icon-xiangxia"></i
+              ><span
+                class="show_label"
+                data-label="库名,表名,时间戳"
+                title="库名,表名,时间戳"
+                >库名,表名,时间戳</span
+              ><input
+                type="hidden"
+                name=""
+                class="hidden_val"
+                value="sysAddDbName,sysAddTableName,sysAddCurrentTime"
+            /></span>
+            <ul class="oSbox" style="min-width: 220px; display: none">
+              <li data-value="sysAddDbName" data-checked="undefined">
+                <em></em
+                ><input
+                  type="checkbox"
+                  class="drop_multiple"
+                  checked="checked"
+                />库名
+              </li>
+              <li data-value="sysAddTableName" data-checked="undefined">
+                <em></em
+                ><input
+                  type="checkbox"
+                  class="drop_multiple"
+                  checked="checked"
+                />表名
+              </li>
+              <li data-value="sysName" data-checked="undefined">
+                <em></em><input type="checkbox" class="drop_multiple" />系统名称
+              </li>
+              <li data-value="sysAddCurrentTime" data-checked="undefined">
+                <em></em
+                ><input
+                  type="checkbox"
+                  class="drop_multiple"
+                  checked="checked"
+                />时间戳
+              </li>
+            </ul>
+          </div>
+          <div class="col_btn_lst">
+            <span class="col_btn ck_all_dest_mysql">全选</span
+            ><span class="col_btn mv_btn mv_to_up mysql_up"
+              ><i class="iconfont icon-xiangshang"></i></span
+            ><span class="col_btn mv_btn mv_to_down mysql_down"
+              ><i class="iconfont icon-xiangxia"></i
+            ></span>
+          </div>
+        </div>
+        <div class="half_title_box">
+          <span>Hive表字段</span>
+        </div>
+      </div>
+      <div class="col_table_box drop_scroll_box">
+        <table class="col_table">
+          <thead>
+            <tr>
+              <th width="18%">序列</th>
+              <th width="35%">名称</th>
+              <th width="25%">类型</th>
+              <th width="22%">加密</th>
+            </tr>
+          </thead>
+          <tbody id="dest_mysql_tb">
+            <tr>
+              <td><input type="checkbox" value="id" /><span>1</span></td>
+              <td class="to_left">
+                <input type="hidden" name="colNames" value="id" />id
+              </td>
+              <td>
+                <input
+                  type="hidden"
+                  name="types"
+                  value="VARCHAR(255)"
+                />VARCHAR(255)
+              </td>
+              <td>
+                <div
+                  style="width: 80px"
+                  class="fm_select id"
+                  data-poptitle="请选择"
+                  value=""
+                >
+                  <span
+                    ><i class="iconfont icon-xiangxia"></i
+                    ><span class="show_label" data-label="请选择">请选择</span
+                    ><input type="hidden" name="encrypt" class="hidden_val"
+                  /></span>
+                  <ul class="oSbox" style="min-width: 78px; display: none">
+                    <div class="slt_srch_box">
+                      <input
+                        type="text"
+                        class="slt_srch_ipt"
+                        placeholder="请输入筛选条件"
+                      /><i class="iconfont icon-sousuo"></i>
+                    </div>
+                    <li data-value="" data-checked="undefined">
+                      <em></em>请选择
+                    </li>
+                    <li data-value="encryptEncoder" data-checked="undefined">
+                      <em></em>encryptEncoder:com.kd.data.hive.encrypt.Encoder
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            <tr class="even">
+              <td><input type="checkbox" value="id" /><span>2</span></td>
+              <td class="to_left">
+                <input type="hidden" name="colNames" value="id" />id
+              </td>
+              <td>
+                <input type="hidden" name="types" value="int(11)" />int(11)
+              </td>
+              <td>
+                <div
+                  style="width: 80px"
+                  class="fm_select id"
+                  data-poptitle="请选择"
+                  value=""
+                >
+                  <span
+                    ><i class="iconfont icon-xiangxia"></i
+                    ><span class="show_label" data-label="请选择">请选择</span
+                    ><input type="hidden" name="encrypt" class="hidden_val"
+                  /></span>
+                  <ul class="oSbox" style="min-width: 78px; display: none">
+                    <div class="slt_srch_box">
+                      <input
+                        type="text"
+                        class="slt_srch_ipt"
+                        placeholder="请输入筛选条件"
+                      /><i class="iconfont icon-sousuo"></i>
+                    </div>
+                    <li data-value="" data-checked="undefined">
+                      <em></em>请选择
+                    </li>
+                    <li data-value="encryptEncoder" data-checked="undefined">
+                      <em></em>encryptEncoder:com.kd.data.hive.encrypt.Encoder
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            <tr class="sysAddCurrentTime dongtaiziduan">
+              <td width="20%">
+                <input
+                  type="checkbox"
+                  name="select"
+                  value="sysAddCurrentTime"
+                /><span>3</span>
+              </td>
+              <td class="to_left">
+                <input
+                  type="text"
+                  class="timeExpre"
+                  name="colNames"
+                  placeholder="${#sysdate(0,0,0):yyyyMMdd-HH-mm-ss#}"
+                  value="${#sysdate(0,0,0):yyyyMMdd-HH-mm-ss#}"
+                />
+              </td>
+              <td>
+                <input type="hidden" name="types" value="VARCHAR(255)" /><span
+                  >VARCHAR(255)</span
+                >
+              </td>
+              <td><input type="hidden" name="encrypt" value="" /></td>
+            </tr>
+            <tr class="sysAddDbName dongtaiziduan">
+              <td width="20%">
+                <input
+                  type="checkbox"
+                  name="select"
+                  value="sysAddDbName"
+                /><span>4</span>
+              </td>
+              <td class="to_left">
+                <input
+                  type="hidden"
+                  name="colNames"
+                  value="sysAddDbName"
+                /><span>sysAddDbName</span>
+              </td>
+              <td>
+                <input type="hidden" name="types" value="VARCHAR(255)" /><span
+                  >VARCHAR(255)</span
+                >
+              </td>
+              <td><input type="hidden" name="encrypt" value="" /></td>
+            </tr>
+            <tr class="sysAddTableName dongtaiziduan">
+              <td width="20%">
+                <input
+                  type="checkbox"
+                  name="select"
+                  value="sysAddTableName"
+                /><span>5</span>
+              </td>
+              <td class="to_left">
+                <input
+                  type="hidden"
+                  name="colNames"
+                  value="sysAddTableName"
+                /><span>sysAddTableName</span>
+              </td>
+              <td>
+                <input type="hidden" name="types" value="VARCHAR(255)" /><span
+                  >VARCHAR(255)</span
+                >
+              </td>
+              <td><input type="hidden" name="encrypt" value="" /></td>
+            </tr>
+          </tbody>
+        </table>
+        <!--消除间隙
+            -->
+        <table class="col_table" style="margin-left: -2px">
+          <thead>
+            <tr>
+              <th width="15%">序列</th>
+              <th width="50%">名称</th>
+              <th width="35%">类型</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="dest_hive_tb">
+            <tr>
+              <td><span>1</span></td>
+              <td class="to_left">
+                <input type="hidden" name="hiveColNames" value="id" />id
+              </td>
+              <td>
+                <input type="hidden" name="hiveTypes" value="STRING" />STRING
+              </td>
+            </tr>
+            <tr class="even">
+              <td><span>2</span></td>
+              <td class="to_left">
+                <input type="hidden" name="hiveColNames" value="name" />name
+              </td>
+              <td>
+                <input type="hidden" name="hiveTypes" value="STRING" />STRING
+              </td>
+            </tr>
+            <tr>
+              <td><span>3</span></td>
+              <td class="to_left">
+                <input
+                  type="hidden"
+                  name="hiveColNames"
+                  value="etl_time"
+                />etl_time
+              </td>
+              <td>
+                <input type="hidden" name="hiveTypes" value="STRING" />STRING
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script>
-    </script>
-</body>
+      $(function () {
+        $("#tj").click(() => {
+          let idLock = judgeLeftRightEqal();
+          console.log(
+            `%c 48行 src/views/exercise/1.html idLock`,
+            "color:blue",
+            idLock
+          );
+        });
 
+        // judgeLeftRightEqal();
+      });
+
+      function judgeLeftRightEqal() {
+        let isLock = false;
+        let right_table = $(".drop_scroll_box .col_table").eq(1);
+        $(".drop_scroll_box").find(".col_table input:checkbox").each(function () {
+            $(this).parents("tr").removeClass("is-orange");
+          });
+        $(".drop_scroll_box")
+          .find(".col_table input:checked")
+          .each(function () {
+            // if(!$(this).attr("disabled")){
+            // 	$(this).removeAttr('checked');
+            // }
+            // 获取tr下的td的序列跟 hive下的tr下的td序列相等的 名称
+            let thisTr = $(this).parents("tr");
+            let trName = thisTr.find('input[name="colNames"]').val();
+            if (
+              trName === "sysAddDbName" ||
+              trName === "${#sysdate(0,0,0):yyyyMMdd-HH-mm-ss#}"
+            ) {
+              isLock = false;
+              thisTr.removeClass("is-orange");
+              return;
+            }
+            let trLine = thisTr.find("td span").eq(0).html();
+            console.log(
+              `%c 72行 src/views/exercise/1.html trLine`,
+              "color:blue",
+              trLine
+            );
+            // console.log(`%c94 73行 exercise/1.html typeof trLine`, 'background:#fff;color:green', typeof trLine);
+            let _that = this;
+
+            right_table.find("tr").each(function (index, domEle) {
+              if (index == Number(trLine)) {
+                let rightName = $(domEle)
+                  .find('input[name="hiveColNames"]')
+                  .val();
+                if (rightName !== trName) {
+                  isLock = true;
+                  thisTr.addClass("is-orange");
+                } else {
+                  thisTr.removeClass("is-orange");
+                }
+              }
+            });
+          });
+        return isLock;
+      }
+
+
+
+
+
+    </script>
+  </body>
 </html>

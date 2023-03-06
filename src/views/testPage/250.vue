@@ -1,23 +1,20 @@
 <template>
   <div>
-    <kd-dev sub-title="testPage/t2.vue" type="top"></kd-dev>
-    <div>ff</div>
-    <div>ff</div>
-    <div>ff</div>
-    <div>ff</div>
-    <div>ff</div>
-    <el-button type="primary" @click="$listeners.test">测试97</el-button>
+    <kd-dev sub-title="testPage/t1.vue" type="top"></kd-dev>
+    <div>ee</div>
+    <div>1111111111</div>
+    <div id="a">111</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "T2",
+  name: "250",
   components: {},
   props: {},
   data() {
     return {
-      t1: "",
+      t1: ""
     };
   },
   computed: {},
@@ -27,8 +24,11 @@ export default {
   },
   mounted() {},
   methods: {
-    init() {},
-  },
+    init() {
+    
+      
+    }
+  }
 };
 </script>
 <style scoped lang="scss"></style>

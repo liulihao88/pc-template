@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-         .ui-tooltip-pointer-down {
-            border-bottom-width: 0;
-            border-left: 7px dashed transparent;
-            border-right: 7px dashed transparent;
-            border-top: 8px solid #333333;
-            bottom: -8px;
-            display: block;
-            height: 0;
-            left: 50%;
-            margin-left: -7px;
-            position: absolute;
-            width: 0;
-        }
+      .ui-tooltip-pointer-down {
+        border-bottom-width: 0;
+        border-left: 7px dashed transparent;
+        border-right: 7px dashed transparent;
+        border-top: 8px solid #333333;
+        bottom: -8px;
+        display: block;
+        height: 0;
+        left: 50%;
+        margin-left: -7px;
+        position: absolute;
+        width: 0;
+      }
 
-        /* .ui-tooltip-pointer-down-inner {
+      /* .ui-tooltip-pointer-down-inner {
             border-left: 6px dashed transparent;
             border-right: 6px dashed transparent;
             border-top: 7px solid #333333;
@@ -30,78 +29,96 @@
             position: absolute;
         } */
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="container">
-        <input type="text" class="fm_ipt col_name_ipt" value="" />
-        <input type="text" class="fm_ipt col_name_ipt" value="" />
-        <input type="text" class="fm_ipt col_name_ipt" value="" />
-        <input type='button' value='点我12' id="ipt" />
+      <input type="text" class="fm_ipt col_name_ipt" value="" />
+      <input type="text" class="fm_ipt col_name_ipt" value="" />
+      <input type="text" class="fm_ipt col_name_ipt" value="" />
+      <input type="button" value="点我12" id="ipt" />
 
-
-        <div class="table_name" data-tip="我是自定义title" id="titleBox" style="margin: 300px;">我是title的body23</div>
-        <div class="table_name" data-tip="我是自定义title2" id="titleBox2" style="margin: 300px;">我是title的body2333</div>
-        <div class="table_name" data-tip="我是自定义title2" id="titleBox2" style="margin: 400px;">我是title的body2333</div>
-        <div class="table_name" data-tip="我是自定义title2" id="titleBox2" style="margin: 500px;">我是title的body2333</div>
+      <div
+        class="table_name"
+        data-tip="我是自定义title"
+        id="titleBox"
+        style="margin: 300px"
+      >
+        我是title的body23
+      </div>
+      <div
+        class="table_name"
+        data-tip="我是自定义title2"
+        id="titleBox2"
+        style="margin: 300px"
+      >
+        我是title的body2333
+      </div>
+      <div
+        class="table_name"
+        data-tip="我是自定义title2"
+        id="titleBox2"
+        style="margin: 400px"
+      >
+        我是title的body2333
+      </div>
+      <div
+        class="table_name"
+        data-tip="我是自定义title2"
+        id="titleBox2"
+        style="margin: 500px"
+      >
+        我是title的body2333
+      </div>
     </div>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.core.min.js"></script>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="./tooltip.js"></script>
     <script>
+      $(function () {
+        // _tooltipInit()
+        // this._init()
+        // let now = new Tooltip()
+        // now._init()
+      });
 
+      function judgeLeftRightEqal() {
+        let lock = false;
+        let right_table = $(".dest_tab_box .drop_scroll_box .col_table").eq(1);
+        $(".dest_tab_box .drop_scroll_box")
+            .find(".col_table input:checkbox")
+            .each(function (index) {
+            // 获取tr下的td的序列跟 hive下的tr下的td序列相等的 名称
+            let thisTr = $(this).parents("tr");
+            let trName = thisTr.find('input[name="colNames"]').val();
+            if (
+            trName !== "sysAddDbName" &&
+            trName !== "${#sysdate(0,0,0):yyyyMMdd-HH-mm-ss#}" && 
+            trName !== "sysAddTableName" &&
+            trName !== "sysName"
+            ) {
+            let trLine = thisTr.find("td span").eq(0).html();
+            console.log(`%c 105行 src/views/testPage/a.html trLine`, "color:blue", trLine);
 
-$(function(){
-    // _tooltipInit()
-    // this._init()
-    // let now = new Tooltip()
-    // now._init()
-})
-        // $(function() {
-        //     (function TooltipLeave() {
-        //         this.mtTimer = null;
-        //         let $tooltipEl = $('[data-tip]')
-        //         $tooltipEl.on('mouseenter', function(e) {
-        //             clearTimeout(this.myTimer)
-        //             let top = $(e.target).offset().top
-        //             let left = $(e.target).offset().left
-
-        //             let tipText = e.target.dataset.tip
-        //             let hasTitle = $('body #myTitle').length !== 0
-        //             if (hasTitle) {
-        //                 $('body #myTitle').html(tipText)
-        //             } else {
-        //                 $('body').append('<div id="myTitle" style="transform-origin: center bottom; z-index: 2065; position:fixed; top: 300px; left:300px; background: #000; color: #fff; padding:4px; border-radius: 2px;" >' + tipText + '</div>');
-        //             }
-        //             $('#myTitle').css({
-        //                 'left': (left + 20 + 'px'),
-        //                 'top': (top - 40 + 'px')
-        //             }).show()
-
-        //             $('#myTitle').mouseenter(function(e) {
-        //                 clearTimeout(this.myTimer)
-        //             })
-        //             $('#myTitle').mouseleave(function(e) {
-        //                 this.leave()
-        //             })
-        //         })
-
-        //         $tooltipEl.on('mouseleave', function(e) {
-        //             this.leave();
-        //         })
-
-        //         TooltipLeave.prototype.leave = function() {
-        //             if ($('#myTitle').length === 0 ) {
-        //                 return
-        //             }
-        //             this.myTimer = setTimeout(() => {
-        //                 $('#myTitle').hide()
-        //             }, 1000);
-        //         }
-        //     })()
-        // })
+            right_table.find("tr").each(function (idx, domEle) {
+                if (index == idx) {
+                let rightName = $(domEle)
+                .find('input[name="hiveColNames"]')
+                .val();
+                console.log(`%c 111行 src/views/testPage/a.html rightName`, "color:blue", rightName);
+                if (rightName !== trName) {
+                    lock = true;
+                    thisTr.addClass("is-red");
+                } else {
+                    thisTr.removeClass("is-red");
+                }
+                }
+            });
+            }
+        });
+        return lock;
+        }
     </script>
-</body>
-
+  </body>
 </html>

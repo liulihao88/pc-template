@@ -4,18 +4,10 @@
       t="1. 单日期公共组件"
       style="--lc: blue"
     ></g-title>
-    <g-date
-      :val.sync="simpleDate"
-      title="请选择单日期范围"
-    ></g-date>
     <g-title
       title="2. 双日期公共组件"
       style="--lc:green;"
     ></g-title>
-    <g-double-date
-      :val.sync="doubleDate"
-      title="请选择双日期范围"
-    />
     <g-title
       title="3. 可拖拽的dialog"
       style="--lc: green"

@@ -1,13 +1,1450 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   
+<title>新增DB导入任务 </title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="shortcut icon" id="linkFavicon" type="image/x-icon" href="/lixian.ico" />
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<script src="/css/iconfont/iconfont.js"></script>
+<script type="text/javascript">
+	var rootPath =  "${__beat.server.contextPath}/";
+</script>
+<script type="text/javascript" src="/js/hp-js/lib/jquery-1.7.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="/js/dep/dateRangePicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/js/jq/jquery-ui-autocompleate.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/pop_dialog.css" />
+<link rel="stylesheet" type="text/css" href="/js/jq/tiptip/tipTip.css" />
+<script src="/js/hp-js/lib/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/jq/tiptip/jquery.tipTip.minified.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+.is-red{
+	color: red !important;
+}
+.gj_lbl{display: block;margin-top: -3px;line-height: 10px;width: 50px;}
+.gj_lbl input{vertical-align:middle;}
+#picker_parent{width: 100%;height: 230px;position: absolute;}
+#picker_parent .drp-buttons {display:none;}
+#picker_parent .daterangepicker {display: block !important;}
+
+.dlg_btns_lst{margin:286px 0 0 0;text-align:center;}
+.alertdom .dlg_btns_lst{margin: 0;}
+#confirmDateIframe .dropdown-menu{
+   box-shadow:none
+}
+.import_type_box>label{margin-right: 25px;} /*gcs 2016-06-02*/
+#importDesIframe .dlg_btns_lst {display: none;}
+.import-des {margin-top: 10px;height: 355px;overflow-y: scroll;}
+.import-des table {width: 100%;margin-top: 10px;}
+.import-des table thead th, .import-des table tbody td {
+    background-color: #FAFAFA;
+    border: 1px solid #EBEBEB;
+    line-height: 30px;
+    height: 30px;
+}
+.import-des table tbody td {padding-left: 10px;}
+.import-des table tbody td:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+	.half_title_box, .dest_tab_box .col_table {
+		display: inline-table;
+    table-layout: fixed;
+	}
+	td{ word-break:break-all; word-wrap:break-word; }
+	td span.show_label { max-width: 110px; }
+	#base_tablebox .col_btn{
+		margin-right:10px;
+		float:right;
+    }
+    .fm_textarea {line-height: 18px;}
+    .multi_tables_info {display: inline-block; width: 38%;padding-left:16px;color:#FA681A;}
+    .col_box .oSbox {min-width: 170px !important;}
+	#partitionLi {display: none;position: relative;}
+
+	.addcol {display: inline-block;width: 222px;margin-left: 10px;margin-top:2px;}
+	.choosePart {width: 22%;display: inline-block;}
+	.choosePart2 {
+		display: none;
+	}
+	.partItem {width: 100%;}
+	.partName {width: 15%;display: inline-block;text-align: right;padding: 0 10px 0 16px;    white-space: nowrap;
+		overflow: hidden;
+		vertical-align: middle;
+		text-overflow: ellipsis;}
+	.partDetailsName{width: 15%;display: inline-block;text-align: right;padding: 0 10px 0 16px;    white-space: nowrap;
+		overflow: hidden;
+		vertical-align: middle;}
+	.partValue {display: inline-block;width: 24%;}
+	.partDetailsValue{
+		display: inline-block;width: 24%;
+	}
+	.partSelect {display: none}
+	.tiptip {
+		margin-left: 0;
+		cursor: pointer;
+	}
+	.partTip {
+		width: 600px !important;
+		background-color: rgba(45,45,45,1);
+		color: #fff;
+		padding: 5px 10px;
+		z-index: 101;
+		border-radius: 5px;
+	}
+	.partTip p {
+		line-height: 26px;
+	}
+	.format_main{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+	.format_main>input{width: 48%;}
+	#projectMain{
+		display: none;
+	}
+
+</style>
 </head>
-<body>
-    <script src="../../../saveCodes/原型链.js"></script>
+<!-- default gray  -->
+<body class="default">
+	<div class="r_content">
+        <div class="navicat_bar">
+            <span class="nav_title">当前位置：</span>
+            <a class="nav_item" href="/datatunnel/import/db/index">DB导入</a>
+            <a class="nav_item active">新增DB导入任务</a>
+        </div>
+		<form id="submitForm" action="/datatunnel/import/db/save" method="POST">
+		    <input type="hidden" id="addSchedule" name="addSchedule" value="false">
+			<div class="form_box">
+                <div class="form_header">新增DB导入任务</div>
+				<ul class="form_ul">
+					<li>
+						<label>任务名称</label>
+						<div><input type="text" class="fm_ipt validate" data-roletype="request" data-poptitle="名称为空" id="id" name="name" placeholder="请输入任务名称：imp+目标表名，如imp_o_m_t_sub_order" autocomplete="off" maxlength="150" /></div>
+					</li>
+					<li>
+						<label>所有者</label>
+						<div class="syz_box">
+							<div><i class="fm_img syz_name iconfont icon-fuzeren"></i><input type="text" class="fm_ipt emp_name validate"  data-roletype="request" data-poptitle="所有者不能为空" name="owners" placeholder="请输入所有者" value="mulinjie(mlj_test2)"/></div>
+                            <div style="text-align:right;"><i class="fm_img syz_phone iconfont icon-dianhua"></i><input type="text" name="tels" class="fm_ipt validate"  data-roletype="phonenum" data-poptitle="电话号码不正确" placeholder="请输入电话号码" value="13718256546"/></div>
+						</div>
+						<div><i class="add_btn add_syz iconfont icon-plus"></i></div>
+					</li>
+					<li id="projectMain">
+						<label>选择项目</label>
+						<div class="fm_select validate" data-roletype="request" data-poptitle="请选择" id="selectProj"></div>
+					</li>
+					<li>
+						<label>数据源</label>
+						<div>
+							<div class="fm_select validate" data-roletype="request" data-poptitle="请选择" id="selectDb" name="db" ></div>
+						</div>
+					</li>
+					<li>
+						<label>导入类型</label>
+						<div class="import_type_box">
+							<label><input type="radio" name="importType" value="0" checked="checked"/>常规导入</label>
+							<label><input type="radio" name="importType" value="1" disabled="disabled"/>动态表名导入</label>
+							<label><input type="radio" name="importType" value="2"/>多表导入</label>
+						</div>
+					</li>
+					<li>
+						<label>DB-Tables</label>
+						<div id="base_tablebox">
+							<div class="fm_select validate" data-roletype="request" data-poptitle="请选择" id="selectDbTables" name="table"></div>
+						</div>
+						<div id="gj_tablebox" style="display:none;">
+							<input type="text" class="fm_ipt" id="table_gj" name="table_gj" placeholder="请输入表名，支持自定义公式"/>
+                        </div>
+                        <div class="multi_tables_info" style="display: none;">选择的多个数据表结构必须一致</div>
+					</li>
+					<li>
+						<label>Hive</label>
+						<div>
+							<div class="fm_select validate" data-roletype="request" data-poptitle="请选择" id="selectHive" name="hive"></div>
+						</div>
+					</li>
+					<li>
+						<label>列</label>
+						<div class="col_box">
+							<div class="src_tab_box">
+								<div class="mysql_col_box">
+									<div class="col_tit_box">
+										<span>DB表字段</span>
+										<div class="col_btn_lst"><span class="col_btn ck_all">全选</span></div>
+									</div>
+									<div class="col_table_box">
+										<table class="col_table">
+											<thead><th width="60%">名称</th><th width="40%">类型</th></thead>
+											<tbody id="src_mysql_tb"></tbody>
+										</table>
+									</div>
+									<div class="add_rmv_box"><span class="add_unable"></span><span class="rmv_unable"></span></div>
+								</div>
+							</div>
+							<div class="dest_tab_box" style="width:97.5%;">
+								<div class="col_tit_box">
+									<div class="half_title_box">
+										<span>DB表字段</span>
+										<div class="fm_select addcol"></div>
+										<div class="col_btn_lst"><span class="col_btn ck_all_dest_mysql">全选</span><span class="col_btn mv_btn mv_to_up mysql_up"><i class="iconfont icon-xiangshang"></i></span><span class="col_btn mv_btn mv_to_down mysql_down"><i class="iconfont icon-xiangxia"></i></span></div>
+									</div><div class="half_title_box">
+										<span>Hive表字段</span>
+									</div>
+								</div>
+								<div class="col_table_box drop_scroll_box">
+									<table class="col_table">
+										<thead ><th width="18%">序列</th><th width="35%">名称</th><th width="25%">类型</th><th width="22%">加密</th></thead>
+										<tbody id="dest_mysql_tb"></tbody>
+									</table><!--消除间隙
+									--><table class="col_table" style="margin-left: -2px;">
+										<thead><th width="15%">序列</th><th width="50%">名称</th><th width="35%">类型</th></thead>
+										<tbody id="dest_hive_tb"><tr></tr></tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li id="runType">
+						<label>运行类型</label>
+						<div>
+							<div class="fm_select validate" data-roletype="request" data-poptitle="请选择" id="selectType" name="type"></div>
+						</div>
+					</li>
+					<li>
+						<label>数据切分字段</label>
+						<div>
+							<div class="fm_select validate" data-roletype="request" data-poptitle="请选择" id="selectDataSepCol" name="split"></div>
+						</div>
+					</li>
+					<li>
+						<label>数据量(资源数-m)</label>
+						<div>
+							<div class="fm_select validate" data-roletype="request" data-poptitle="请选择" id="selectDataNum"></div>
+							<input type="text" id='num' name='num' class="fm_ipt validate datanum_gj_ipt" data-roletype="number" data-poptitle="请输入数字" style="display:none;"/>
+						</div><div>
+						<label><input type="checkbox" class="datanum_gj"/> 高级</label>
+						</div>
+					</li>
+					<li id="partitionLi">
+<!--						<label>分区表达式</label>-->
+<!--						<div><textarea class="fm_textarea validate" id="partitionExpression" data-roletype="request"  data-poptitle="分区表达式为空" name="partitionExpression" placeholder="例如分区为日期-1天，此处填写${#date(0,0,-1):yyyyMMdd#} 或填写自定义参数，例：${#lasyDay#}"></textarea></div>-->
+						<label>分区信息 <i class="tiptip iconfont icon-tip"></i></label>
+						<div class="partWrap">
+
+						</div>
+						<div class="partTip" style="position: absolute;top:8px;left: 14%;display: none;">
+							<p>分区信息说明</p>
+							<p>支持静态分区和动态分区</p>
+							<p>&nbsp;&nbsp;1.静态分区需要指定具体的分区值，例如：</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;1） 分区为日期-1天，填写${#date(0,0,-1):yyyyMMdd#}；</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;2） 支持填写自定义，已定义参数名称为lastday,填写${#lastday#}，<a class="toParam">查看自定义参数</a> </p>
+							<p>&nbsp;&nbsp;2.动态分区只需要指定源表的分区字段（多级分区指定多个）；</p>
+							<p>&nbsp;&nbsp;3.当多级分区中包含静态分区和动态分区，静态分区必须为高级分区；</p>
+							<p>&nbsp;&nbsp;4.动态生成的分区值不允许为NULL，也不支持包含有特殊字符和中文，否则会引发异常；</p>
+							<p>注意</p>
+							<p>&nbsp;&nbsp;1.如果是动态分区，来源表数据量非常大，并且分区字段数据分布不均匀容易产生数据倾斜问题，建议先将数据量非常大的那个分区值过滤随后静态分区单独插入；</p>
+							<p>&nbsp;&nbsp;2.分布式环境下，单个进程最多只能输出512个动态分区，否则引发运行时异常；</p>
+							<p>&nbsp;&nbsp;3.任意动态分区不允许超出2000个动态分区，否则引发运行异常；</p>
+						</div>
+					</li>
+					<!-- <li id="dataFormat">
+						<label>数据格式转换</label>
+						<div>
+							<div class="format_main">
+								<input type="text" id='oldFormat' name='src' class="fm_ipt validate " data-roletype="length" data-poptitle="请输入格式" placeholder="请输入格式" />
+								<input type="text" id='newFormat' name='dest' class="fm_ipt validate " data-roletype="length" data-poptitle="请输入格式" placeholder="请输入格式"  />
+							</div>
+						</div>
+
+					</li> -->
+					<li>
+						<label>DB前置条件</label>
+						<div><textarea class="fm_textarea dbserach" name="preCondition" placeholder="DB前置的条件需要填写sql语句，例如：delete from table where id < 10"></textarea></div>
+					</li>
+					<li>
+						<label>DB查询条件</label>
+						<div><textarea class="fm_textarea dbserach" name="condition" placeholder="DB中查询数据的条件（不包括where，无条件为空，支持公式），例如查询 select a,b from table where a>1;此处只需填写a>1即可"></textarea></div>
+					</li>
+					<li>
+						<label>高级配置</label>
+						<div><textarea class="fm_textarea" name="advancedConf" placeholder="不建议填写,如果配置需要根据sqoop的参数填写"></textarea></div>
+						<!-- <div><input type="text" class="fm_ipt" id="advancedConf" name="advancedConf" data-roletype="request"  placeholder="不建议填写,如果配置需要根据sqoop的参数填写"/></div> -->
+					</li>
+					<li>
+						<label>描述</label>
+						<div><textarea class="fm_textarea validate" maxlength="200" data-roletype="length" data-min="0" data-max="200" data-poptitle="描述长度最大为200" name="description" placeholder="描述"></textarea></div>
+					</li>
+				</ul>
+				<div class="fm_btns_lst">
+				  <button type="button" class="fm_btns fm_btn_ok">提交3</button>
+                  <button type="button" class="fm_btns fm_btn_cancel">取消</button>
+                  <button type="button" class="fm_btns fm_btn_ok_continue">提交并添加调度</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+    <!-- 提醒数据源已存在-->
+    <div class='import-des' style="display:none;">
+        <p>*该数据源已经存在导入任务,具体如下</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>负责人</th>
+                    <th>状态</th>
+                    <th>Hive</th>
+                </tr>
+            </thead>
+            <tbody class='import-body'>
+
+            </tbody>
+        </table>
+    </div>
+    <div id="importDesIframe" class="popIframe" style="width:630px;height:450px;">
+
+    </div>
+	<div id="confirmDateIframe" class="popIframe" style="width:304px;height:458px;"></div>
+	<div class="maskLayer"></div>
 </body>
-</html>
+<script type="text/javascript">
+	var htmltype = 'import';//db导入
+</script>
+<script type="text/javascript" src="/js/hp-js/lib/TabSwitch-min.js"></script>
+<script type="text/javascript" src="/js/dropdown.js"></script>
+<script type="text/javascript" src="/js/cols_manage.js"></script>
+<script type="text/javascript" src="/js/validate.js"></script>
+<script type="text/javascript" src="/js/jq/jquery-ui-autocompleate.min.js"></script>
+<script src="/js/dep/dateRangePicker/moment.min.js"></script>
+<script src="/js/dep/dateRangePicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/js/dragDlg.js"></script>
+<script type="text/javascript">
+	var query = getUrlParams( window.location.href)
+	var projectId = ''
+	// 判断外部选择的项目id时候为全部，全部需要渲染项目下拉；项目id不为全部，赋值为外部选中的项目id
+	if(!query.projectId) {
+		$('#projectMain').show()
+		// 按照项目筛选
+		var selectProj = null;
+		$.ajax({
+			url: '/project/admin/list.json',
+			data: {
+				type: 'add'
+			},
+			type:"POST",
+			async: false,
+			success:function(data){
+				data = eval("("+data+")");
+				selectProj = new DropdownBox({
+					parent: $('#selectProj'),
+					localData: data,
+					refreshShowable : false,
+					isTriggerValChangeFunc: false,
+					onChangeFunc : function(){
+						// window.pagerReload({projectId: selectProj.value(), page: 1});
+						// window.location.reload()
+						projectId =  selectProj.value()
+						$.ajax({
+							url:'/datatunnel/dbserver/getAllDbServer.json',
+							type : "POST",
+							data: {
+								projectId: projectId,
+							},
+							success: function(data){
+								var rs = eval("(" + data + ")");
+								selectDb.setSourceData(rs);
+								selectDbTables.setSourceData([]);
+								selectDbTables.value('#');
+								colsManage.setSrcDbDatas([]);
+								selectSplit.setSourceData([]);
+								selectSplit.value('#');
+							}
+						})
+						selectDb.value('#')
+					}
+				});
+				// 默认选中全部
+				selectProj.resetValue();
+				projectId =  selectProj.value()
+			}
+		});
+	} else {
+		$('#projectMain').hide()
+		projectId = query.projectId
+	}
+
+
+	/** 动态分区下拉选择框 */
+	var provinceList = [];
+	/** 是否有分区 */
+	var isHavePartition = false;
+	// $('#dataFormat').hide()
+	var colsManage = new ColsManage({
+		dbRmvEvent : function(checkedIpts){
+			let datas = $.map($('#dest_mysql_tb').find('tr'), function(tr, i){
+							var colName = $(tr).find('td:eq(1)').text();
+							return {
+								label : colName,
+								value : colName
+							};
+						});
+			selectSplit.setSourceData(datas);
+			selectSplit.resetValue();
+			resetPartType(datas);
+
+			// 设置多选下拉框selectAddCol的值
+			let originVal = selectAddCol.value();
+			let originValArr = originVal.split(',');
+			for (let i=0; i<checkedIpts.length; i++) {
+				let ckIpt = $(checkedIpts[i]);
+				let index = originValArr.indexOf(ckIpt.val());
+				if (index>-1) {
+					originValArr.splice(index, 1);
+				}
+			}
+			selectAddCol.value(originValArr.join(','));
+		},
+		dbAddEvent: function (self,items) {
+			console.log(self,items);
+			let datas = $.map($('#dest_mysql_tb').find('tr'), function(tr, i){
+				var colName = $(tr).find('td:eq(1)').text();
+				return {
+					label : colName,
+					value : colName
+				};
+			});
+			resetPartType(datas);
+		}
+	});
+	function resetPartType(datas) {
+		let other = [{"label":"库名","value":"sysAddDbName"},{"label":"表名","value":"sysAddTableName"},{"label":"系统名称","value":"sysName"}];
+		let arr = other.map(item => {
+			return {
+				label : item.value,
+				value : item.value
+			}
+		})
+		datas = datas.concat(arr)
+		provinceList = datas;
+		let id = $('#selectHive').attr('value');
+		if(id) {
+			getPartitionInfo(id);
+		}
+	}
+	var syz_box = $($('.syz_box')[0]).clone(true).find('input').val('').end();
+	$('.add_syz').click(function(){
+		var lastSyzLi = $('.syz_box').parents('li')[0],
+			afterEle = $('<li></li>');
+
+		afterEle.append('<label></label>').append(syz_box.clone(true)).append('<div><i class="add_btn rmv_syz iconfont icon-minus"></i></div>');
+		$(lastSyzLi).after(afterEle);
+		initAutoCompleteEvent($('.emp_name'));
+		u.validate();
+		taskNameBindEvents();
+		resizeOuterIframe();
+	});
+
+	$('.form_ul').delegate('.rmv_syz', 'click', function(){
+		$(this).parents('li').remove();
+	});
+
+	$('.datanum_gj').click(function(){
+		if($(this).is(':checked')){
+			$('#selectDataNum').hide().next('.datanum_gj_ipt').show();
+			var value = selectDataNum.value();
+			if(value){
+				$('.datanum_gj_ipt').val(value);
+			}
+		}else{
+			$('#selectDataNum').show().next('.datanum_gj_ipt').hide();
+			selectDataNum.value($('.datanum_gj_ipt').val());
+		}
+	});
+
+	$('.datanum_gj_ipt').bind('keyup', function(){
+		selectDataNum.value($(this).val(), true);
+	});
+
+	$('.datanum_gj').click(function(){
+		if($(this).is(':checked')){
+			$('#selectDataNum').hide().next('.datanum_gj_ipt').show();
+			var value = selectDataNum.value();
+			if(value){
+				$('.datanum_gj_ipt').val(value);
+			}
+		}else{
+			$('#selectDataNum').show().next('.datanum_gj_ipt').hide();
+			selectDataNum.value($('.datanum_gj_ipt').val(), true)
+		}
+    });
+
+    //弹出弹框
+    function popImportDesDialog() {
+        drag.popwin({
+			id: 'importDesIframe',
+			title: '提示',
+            infoHtml: $('.import-des').clone(true).css('display', 'block').prop('outerHTML')
+        });
+    }
+
+    function handleSureOrClickDoc() {
+        if (selectDbTables.options.multiple && selectDbTables.options.parent.find('.oSbox').is(':hidden')) {
+            return;
+        }
+        var dbId = selectDb.value();
+        var name = selectDbTables.value();
+        $.ajax({
+            url: "/datatunnel/import/db/getImportJobByDbTable",
+            data:{
+                dbId: dbId,
+                table: name
+            },
+            type : "POST",
+            success: function(data){
+                var rs = eval("(" + data + ")");
+                if (rs.state == 'success' && rs.data.length>0) {
+                    importDes(rs.data);
+                    popImportDesDialog();
+                }else{
+                    $('#importDesIframe').add($('.maskLayer')).hide();
+                }
+            }
+        });
+    }
+
+	function dbTablesChange(){
+		$('#dest_mysql_tb').empty();
+		selectAddCol.value('');
+		var dbId = selectDb.value();
+		var name = this.value();
+		$.ajax({
+			url: "/datatunnel/dbserver/getColInfoByDbAndTables.json",
+			data:{
+				id: dbId,
+				table:name
+			},
+			type : "POST",
+			success: function(data){
+				var rs = eval("(" + data + ")");
+				colsManage.setSrcDbDatas(rs);
+				if(rs.length === 0) {
+					drag.myalert('提示', '字段列表为空，请检查权限');
+				}
+			}
+		});
+        //提示数据源已存在导入
+		if (dbId && name && !selectDbTables.options.multiple) {
+            handleSureOrClickDoc(dbId, name);
+		}
+	}
+	// 改变动态分区的类型
+	function handleTypeChange(type, index, typeMap) {
+    	let compareIndex = type == '1'? index : index+1;
+		$('.partItem').each(function (j) {
+			if (j==compareIndex) {
+				$(this).find('.choosePart').css('display','inline-block');
+				$(this).find('.choosePart2').css('display','none');
+				$(this).find('.partInput').css('display','none').val('');
+				$(this).find('.partSelect').css('display','block');
+				$(this).find('.partDetailsName').show()
+				$(this).find('.partDetailsValue').show();
+				typeMap[j].value('1');
+			} else if (j>compareIndex) {
+				$(this).find('.choosePart').css('display','none');
+				$(this).find('.choosePart2').css('display','inline-block');
+				$(this).find('.partInput').css('display','none').val('');
+				$(this).find('.partSelect').css('display','block');
+				$(this).find('.partDetailsName').show()
+				$(this).find('.partDetailsValue').show();
+				typeMap[j].value('1');
+			}
+		})
+	}
+
+	/** 获取分区信息* */
+	function getPartitionInfo(id) {
+		var tableId = id;
+		var colsDatas;
+		var udfDatas;
+		$.ajax({
+			url : "/datadevelop/hivetable/getPartitions.json",
+			data : {
+				id : tableId
+			},
+			async : false,
+			type : "POST",
+			success : function(data) {
+				colsDatas = eval("(" + data + ")");
+			}
+		});
+		$.ajax({
+			url : "/datadevelop/program_develop/udfs_all.ajax?funcType=1",
+			async : false,
+			type : "get",
+			success : function(data) {
+				// colsDatas = eval("(" + data + ")");
+				udfDatas =  eval("(" + data + ")").content.map(item => {
+					return {
+						value: item.id,
+						label: item.udfName
+					}
+				})
+			}
+		});
+		$('#partitionLi .partWrap').empty();
+		let newEle = $('<div class="partItem">\
+				<div class="fm_select validate choosePart" data-roletype="request" data-poptitle="请选择" id="selectPartitionType"></div><!--\
+				--><div class="fm_select validate choosePart choosePart2" data-roletype="request" data-poptitle="请选择"></div><!--\
+				--><span class="partName"></span><!--\
+				--><div class="partValue"><!--\
+				--><input type="text" class="fm_ipt validate partInput" data-roletype="request" data-poptitle="请输入" id="part_dt" name="" placeholder="请输入分区值" value="${#date(0,0,-1):yyyyMMdd#}"  autocomplete="off" /><!--\
+				--><div class="fm_select validate partSelect" data-roletype="request" data-poptitle="请选择" id="selectProvince"></div><!--\
+				--></div><!--\
+				--><span class="partDetailsName"></span><!--\
+				--><div class="partDetailsValue"><!--\
+				--><input type="text" class="fm_ipt validate partitionFun" data-roletype="request" data-poptitle="请输入"  name="partitionFun" placeholder="请输入" value=""  autocomplete="off" /><!--\
+				--></div><!--\
+				--></div>');
+		let valueMap = {};
+		let valueDetailsMap = {};
+		let typeMap = {};
+		for (var i = 0; i < colsDatas.length; i++) {
+			let strEle = newEle.clone();
+			strEle.find('.choosePart').attr('id', 'selectPartitionType'+i).attr('value', '0');
+			strEle.find('.choosePart2').attr('value', '1');
+			strEle.find('.partName').text(colsDatas[i].name);
+			strEle.find('.partDetailsName').text('函数详情');
+
+			strEle.find('.partInput').attr('id', 'part_dt'+i).css('display','block');
+			strEle.find('.partSelect').attr('id', 'selectProvince'+i).css('display', 'none');
+			strEle.find('.partDetailsValue').hide();
+			// $('#dataFormat').hide()
+			strEle.find('.partDetailsName').hide();
+			$('#partitionLi .partWrap').append(strEle);
+			valueMap[i] = new DropdownBox({
+				parent: strEle.find('.partSelect'),
+				localData: provinceList,
+				searchShowable: true,
+				refreshShowable: false,
+			});
+			// valueDetailsMap[i] = new DropdownBox({
+			// 	parent: strEle.find('.partSelectDetails'),
+			// 	localData: udfDatas,
+			// 	searchShowable: true,
+			// 	refreshShowable: false,
+			// });
+			new DropdownBox({
+				parent: strEle.find('.choosePart2'),
+				localData: [{value: '1',label: '动态分区'}],
+				searchShowable: false,
+				refreshShowable: false,
+			});
+			(function (index) {
+				typeMap[index] = new DropdownBox({
+					parent : strEle.find('.choosePart:not(.choosePart2)'),
+					localData : [{value: '0',label: '静态分区'}, {value: '1',label: '动态分区'}],
+					refreshShowable : false,
+					searchShowable : false,
+					isTriggerValChangeFunc: false,
+					onChangeFunc: function () {
+						let value = this.value();
+						if(value == '0') { // 静态分区
+							this.options.parent.parent().find('.partInput').css('display','block').val('${#date(0,0,-1):yyyyMMdd#}');
+							this.options.parent.parent().find('.partSelect').css('display','none');
+							this.options.parent.parent().find('.partDetailsName').hide()
+							this.options.parent.parent().find('.partDetailsValue').hide();
+							// $('#dataFormat').hide()
+						} else { // 动态分区
+							this.options.parent.parent().find('.partInput').css('display','none');
+							this.options.parent.parent().find('.partSelect').css('display','block');
+							this.options.parent.parent().find('.partDetailsName').show()
+							this.options.parent.parent().find('.partDetailsValue').show();
+							// $('#dataFormat').show()
+						}
+						$('#partitionLi').clearValidate();
+						valueMap[index].value('');
+						// valueDetailsMap[index].value('')
+						handleTypeChange(value, index, typeMap);
+					}
+				});
+			})(i);
+
+		}
+
+		u.validate();
+		taskNameBindEvents();
+	}
+
+	var CURRENT_NAME = 'sysAddCurrentTime'; //时间戳
+	var UUID_NAME = 'uuid'; //主键
+	var PART_NAME = 'part'; //分区
+	var userDefineCols = [{"label":"库名","value":"sysAddDbName"},{"label":"表名","value":"sysAddTableName"},{"label":"系统名称","value":"sysName"}];
+	var hiveCols = userDefineCols.concat([
+		{
+			value: CURRENT_NAME,
+			label: '时间戳'
+		}
+	]);
+
+	var dbCols = userDefineCols.concat([
+		{
+			value: CURRENT_NAME,
+			label: '时间戳'
+		},
+		{
+			value: UUID_NAME,
+			label: '主键'
+		},
+		{
+			value: PART_NAME,
+			label: '分区表达式'
+		}
+	]);
+	var systemData = '';
+	function addColsByVals(vals) {
+		vals = vals.split(',');
+		let tmpTimeExpre = $('.timeExpre').length>0?$('.timeExpre').val(): '${#sysdate(0,0,0):yyyy-MM-dd HH:mm:ss#}';
+		$('#dest_mysql_tb .dongtaiziduan').remove();
+		if (vals && vals[0]) {
+			for (let i=0; i<vals.length; i++) {
+				let html = '';
+				// ETLOILFIELD
+				if (vals[i] == CURRENT_NAME || vals[i] == UUID_NAME || vals[i] == PART_NAME) {
+					if (vals[i] == CURRENT_NAME) {
+						html = '<tr class="dongtaiziduan '+CURRENT_NAME+'"><td width="20%"><input type="checkbox" name="select" value="'+CURRENT_NAME+'"/><span></span></td><td style="position:relative;"><input type="text" class="timeExpre" name="colNames" placeholder="${#sysdate(0,0,0):yyyy-MM-dd HH:mm:ss#}" value="'+tmpTimeExpre+'"></td><td><input type="hidden" name="types" value="VARCHAR(255)" /><span>VARCHAR(255)</span></td><td><input type="hidden" name="encrypt" value="" /></td></tr>'
+					} else if (vals[i] == UUID_NAME) {
+						html = '<tr class="dongtaiziduan '+UUID_NAME+'"><td width="20%"><input type="checkbox" name="select" value="'+UUID_NAME+'"/><span></span></td><td class="to_left"><input type="hidden" name="colNames" value="'+UUID_NAME+'" /><span>uuid</span></td><td><input type="hidden" name="types" value="生成主键" /><span>生成主键</span></td><td><input type="hidden" name="encrypt" value="" /></td></tr>'
+					} else if (vals[i] == PART_NAME) {
+						html = '<tr class="dongtaiziduan '+PART_NAME+'"><td width="20%"><input type="checkbox" class="part" name="select" value="'+PART_NAME+'"/><span></span></td><td style="position:relative;"><input type="text" class="kuduExpre" name="colNames" placeholder="${#sysdate(0,0,0):yyyy-MM-dd HH:mm:ss#}"></td><td><input type="hidden" name="types" value="生成分区" /><span>生成分区</span></td><td><input type="hidden" name="encrypt" value="" /></td></tr>'
+					}
+				} else {
+					if(vals[i] === 'ETLOILFIELD') {
+						html = '<tr class="dongtaiziduan"><td width="20%"><input type="checkbox" name="select" value="sysName"/><span></span></td><td class="to_left"><input type="hidden" name="colNames" value="sysName" /><span>sysName</span></td><td><input type="hidden" name="types" value="VARCHAR(255)" /><span>VARCHAR(255)</span></td><td><input type="hidden" name="encrypt" value="" /></td></tr>';
+					} else {
+						html = '<tr class="dongtaiziduan"><td width="20%"><input type="checkbox" name="select" value="'+vals[i]+'"/><span></span></td><td class="to_left"><input type="hidden" name="colNames" value="'+vals[i]+'" /><span>'+vals[i]+'</span></td><td><input type="hidden" name="types" value="VARCHAR(255)" /><span>VARCHAR(255)</span></td><td><input type="hidden" name="encrypt" value="" /></td></tr>';
+					}
+				}
+				$('#dest_mysql_tb').append(html);
+			}
+		}
+		colsManage._refreshMysqlSeqNum();
+	}
+	var selectAddCol = new DropdownBox({
+  		parent : $('.addcol'),
+		placeholder: '可添加以下字段',
+		localData: hiveCols,
+  		refreshShowable : false,
+  		searchShowable : false,
+  		multiple:true,
+  		onChangeFunc : function(){
+			var vals = selectAddCol.value();
+			let newVals = vals.split(',')
+			let typeStr = newVals.filter(item => item === 'ETLOILFIELD')
+			if(typeStr == "ETLOILFIELD"){
+				if(selectDb.value()) {
+					$.ajax({
+						url: "/datatunnel/dbserver/db.json?id="+selectDb.value(),
+						success: function(data){
+							systemData = eval("(" + data + ")")
+							if(systemData.systemName) {
+								addColsByVals(vals);
+							} else {
+								drag.myalert('提示', '系统名称为空');
+							}
+						}
+					});
+				} else {
+					drag.myalert('提示', '请先选择数据源等信息');
+					let activeVals = newVals.filter(item => item !== 'ETLOILFIELD')
+					selectAddCol.value(activeVals.join(','))
+				}
+				
+			} else {
+				addColsByVals(vals);
+			}
+			//
+
+  		}
+  	});
+	var selectDb = new DropdownBox({
+						parent: $('#selectDb'),
+						url : '/datatunnel/dbserver/getAllDbServer.json',
+						hiddenIptName : 'db',
+						requestData:{
+							projectId: projectId,
+						},
+						onChangeFunc : function(){
+							var dbId = this.value();
+							selectDbTables.setSourceData([]);
+							selectDbTables.value('#');
+							$.ajax({
+								url: "/datatunnel/dbserver/checkUserDbAccessWithACL.json/"+dbId,
+								success: function(data){
+									var rs = eval("(" + data + ")");
+									if($("#selectDb").parent().find(".err_box_tip")){
+										$("#selectDb").parent().find(".err_box_tip").remove();
+									}
+									if(!rs.isAccess){
+										//alert("无权限数据源，请联系对应数据源的负责人开通权限！");
+										$("#selectDb").addClass("errBorder");
+										$("#selectDb").parent().append('<span class="err_box_tip" style="left: 100%;margin: -32px 0 0 3px;">无权限数据源，请联系对应数据源的负责人开通权限！</span>');
+										selectDbTables.setSourceData([]);
+										selectDbTables.value('#');
+										colsManage.setSrcDbDatas([]);
+										$('#dest_mysql_tb').empty();
+										selectSplit.setSourceData([]);
+										selectSplit.value('#');
+										return;
+									}else{
+										$("#selectDb").removeClass("errBorder");
+
+										$.ajax({
+											url: "/datatunnel/dbserver/getTableByDbId.json/"+dbId,
+											success: function(data){
+												var rs = eval("(" + data + ")");
+												selectDbTables.setSourceData(rs);
+												selectDbTables.value('#');
+												colsManage.setSrcDbDatas([]);
+												$('#dest_mysql_tb').empty();
+												selectSplit.setSourceData([]);
+												selectSplit.value('#');
+
+											}
+										});
+										$.ajax({
+											url: "/datatunnel/dbserver/isMultiDb.json/"+dbId,
+											success: function(data){
+												var rs = eval("(" + data + ")");
+												if(rs.isMultiDb){
+													$('#runType').css('display','block');
+													$('#selectType').css('display','block');
+												}else{
+													$('#runType').css('display','none');
+													$('#selectType').css('display','none');
+												}
+											}
+										});
+									}
+
+								}
+							});
+
+
+							if(dbId){
+								$('.import_type_box input[value="1"]').removeAttr('disabled');
+							}
+						}
+					}),
+		selectDbTables = new DropdownBox({
+						parent: $('#selectDbTables'),
+						hiddenIptName : 'table',
+						refreshShowable : false,
+						onChangeFunc : dbTablesChange
+					}),
+		selectHive = new DropdownBox({
+						parent: $('#selectHive'),
+						url : '/datadevelop/hivetable/getWarehouseOdsHiveTable.json',
+						hiddenIptName : 'hive',
+						onChangeFunc : function(){
+							var hiveId = this.value();
+								$.ajax({
+									url:"/datadevelop/hivetable/getTableType.json/"+hiveId,
+									success: function(data){
+										var rs = eval("(" + data + ")");
+										if(rs.msg0 == 'KUDU'){
+											selectAddCol.setSourceData(dbCols);
+										}else{
+											selectAddCol.setSourceData(hiveCols);
+										}
+									}
+								});
+								$.ajax({
+									url: "/datadevelop/hivetable/getColInfoByHiveId.json/"+hiveId,
+									success: function(data){
+										var rs = eval("(" + data + ")");
+										colsManage.setDestHiveDatas(rs);
+										$('#dest_hive_tb').find('input[type=checkbox]').remove();
+										$.ajax({
+											url: "/datadevelop/hivetable/checkPartition.json/"+hiveId,
+											type : "POST",
+											success: function(data){
+												var rs = eval("(" + data + ")");
+												if(!rs.isTextfile){
+													drag.myalert('提示', '所选hive的格式不支持导入！');
+												}
+												if(rs.havePartition){
+													getPartitionInfo(hiveId);
+													$('#partitionLi').css('display','block');
+													isHavePartition = true;
+												}else{
+													$('#partitionLi .partWrap').empty();
+													$('#partitionLi').css('display','none');
+													isHavePartition = false;
+												}
+											}
+										});
+									}
+								});
+						}
+					}),
+		selectType = new DropdownBox({
+			parent: $('#selectType'),
+			hiddenIptName : 'type',
+			localData : [{"label":"串行","value":"0"},{"label":"并行","value":"1"}],
+			refreshShowable : false,
+			onChangeFunc:function(){
+			   var value = $('#selectType').attr('value')
+			   if(value == 0){
+			      $('.warning').remove()
+			   }else{
+			   	   changeJoin()
+			   }
+			}
+		}),
+		selectPartitionType = new DropdownBox({
+			parent: $('#selectPartitionType'),
+			localData: [
+				{value: '0',label: '静态分区'}, {value: '1',label: '动态分区'}
+			],
+			searchShowable: false,
+			refreshShowable: false,
+			onChangeFunc: function () {
+				let value = $('#selectPartitionType').attr('value');
+				if(value == '0') { // 静态分区
+					$('.partInput').css('display','block');
+					$('.partSelect').css('display','none');
+				} else {
+					$('.partInput').css('display','none');
+					$('.partSelect').css('display','block');
+				}
+				console.log('初始化时改变分区类型',value,this.value())
+			}
+		}),
+		selectProvince = new DropdownBox({
+			parent: $('#selectProvince'),
+			localData: [],
+			searchShowable: true,
+			refreshShowable: false,
+		}),
+		selectSplit = new DropdownBox({
+						parent: $('#selectDataSepCol'),
+						hiddenIptName : 'split',
+						isSpecialDropData : true
+					}),
+		selectDataNum = new DropdownBox({
+						parent: $('#selectDataNum'),
+						localData : [{value:'2', label:'小于100W(2)'},{value:'10', label:'100W-500W(10)'},
+							{value:'20', label:'500W-1000W(20)'},{value:'30', label:'1000W-1500W(30)'},
+							{value:'40', label:'1500W-2000W(40)'},{value:'50', label:'2000W-2500W(50)'},
+							{value:'60', label:'2500W-3000W(60)'},{value:'70', label:'3000W-3500W(70)'},
+							{value:'80', label:'3500W-4000W(80)'},{value:'90', label:'4000W-4500W(90)'},
+							{value:'100', label:'4500W-5000W(100)'},{value:'110', label:'5000W-5500W(110)'},
+							{value:'120', label:'5500W-6000W(120)'},{value:'130', label:'6000W-6500W(130)'},
+							{value:'140', label:'6500W-7000W(140)'},{value:'150', label:'7000W-7500W(150)'},
+							{value:'160', label:'7500W-8000W(160)'},{value:'170', label:'8000W-8500W(170)'},
+							{value:'180', label:'8500W-9000W(180)'},{value:'190', label:'9000W-9500W(190)'},
+							{value:'200', label:'9500W-1亿(200)'}],
+						refreshShowable : false
+					});
+
+	u.validate();
+	taskNameBindEvents();
+	$('#dest_mysql_tb').on('blur keyup','.kuduExpre,.timeExpre',function() {
+		if ($(this).val()) {
+			$(this).removeClass('errBorder').nextAll('.err_box_tip').remove();
+		}else{
+			$(this).addClass('errBorder').after('<span class="err_box_tip">请填写表达式</span>');
+		}
+	})
+	function packOtherParams() {
+		var majorIndex = $('.uuid').index();
+		var partIndex = $('.'+PART_NAME).index();
+		var timeIndex = $('.'+CURRENT_NAME).index();
+		var form = document.getElementById('submitForm');
+		var newElement = document.createElement("input");
+		var newSrcElement = document.createElement("input");
+		var newElementPart = document.createElement("input");
+		var newElementExp = document.createElement("input");
+		var newTimestamp = document.createElement("input");
+		var newTimeExp = document.createElement("input");
+		var newProjectId = document.createElement("input");
+        newElement.setAttribute("type","hidden");
+        newElementPart.setAttribute("type","hidden");
+		newElementExp.setAttribute("type","hidden");
+		newTimestamp.setAttribute("type","hidden");
+		newSrcElement.setAttribute("type","hidden")
+		newTimeExp.setAttribute("type","hidden");
+		newProjectId.setAttribute("type","hidden");
+		if (majorIndex>-1 && majorIndex+1 <= $('#dest_hive_tb tr').length) {
+			newElement.name = 'generateId';
+        	newElement.value = $('#dest_hive_tb tr:eq('+majorIndex+') td:eq(1) input').val()?$('#dest_hive_tb tr:eq('+majorIndex+') td:eq(1) input').val():'';
+			form.appendChild(newElement);
+		}
+        if (partIndex>-1 && partIndex+1 <= $('#dest_hive_tb tr').length) {
+			newElementPart.name = 'generatePartition';
+			newElementPart.value = $('#dest_hive_tb tr:eq('+partIndex+') td:eq(1) input').val()?$('#dest_hive_tb tr:eq('+partIndex+') td:eq(1) input').val():'';
+			newElementExp.name = 'kuduExpression';
+			newElementExp.value = $('#dest_mysql_tb .kuduExpre').val()?$('#dest_mysql_tb .kuduExpre').val():'';
+			form.appendChild(newElementPart);
+			form.appendChild(newElementExp);
+		}
+		if (timeIndex>-1 && timeIndex+1 <= $('#dest_hive_tb tr').length) {
+			newTimestamp.name = 'generateTimestamp';
+			newTimestamp.value = $('#dest_hive_tb tr:eq('+timeIndex+') td:eq(1) input').val()?$('#dest_hive_tb tr:eq('+timeIndex+') td:eq(1) input').val():'';
+			newTimeExp.name = 'timestampExpression';
+
+			newTimeExp.value = $('#dest_mysql_tb .timeExpre').val()?$('#dest_mysql_tb .timeExpre').val():'';
+			form.appendChild(newTimestamp);
+			form.appendChild(newTimeExp);
+		}
+		newSrcElement.name = 'partitionFun'
+		newSrcElement.value = $('.partDetailsValue').find('input').attr('value') || ''
+		console.log( $('.partDetailsValue').find('input').attr('value'))
+		form.appendChild(newSrcElement)
+
+		newProjectId.name= 'projectId'
+		newProjectId.value = projectId
+		form.appendChild(newProjectId);
+		$('#dest_mysql_tb .uuid, #dest_mysql_tb .'+PART_NAME+', #dest_mysql_tb .'+CURRENT_NAME).remove();
+	}
+	function packHivePartParams() {
+		var form = document.getElementById('submitForm');
+		var newElement = document.createElement("input");
+		newElement.setAttribute("type","hidden");
+		newElement.name = 'otherPartition';
+		let arr = [];
+		$('#partitionLi .partItem').each(function (i,v) {
+			let obj = {
+				importPartitionType: '',
+				partionName: '',
+				partionExpression: '',
+				partitionFun: ''
+			}
+			var item = $(v);
+			obj.importPartitionType = item.find('.choosePart:not(:hidden)').attr('value');
+			obj.partionName = item.find('.partName').text();
+			if(obj.importPartitionType == '0') { // 静态是输入框
+				obj.partionExpression = item.find('.partValue .partInput').val();
+			} else {
+				console.log( item.find('.partValue .partSelect').attr('value'))
+				obj.partionExpression = item.find('.partValue .partSelect').attr('value');
+				obj.partitionFun = item.find('.partDetailsValue .partitionFun').attr('value')
+			}
+			arr.push(obj)
+		});
+		let param = {
+			partitions: arr
+		};
+		newElement.value = JSON.stringify(param);
+		form.appendChild(newElement);
+
+	}
+	$('.fm_btn_ok').click(function(){
+		$('.form_box').find('.validate').trigger('blur');
+		if($('#table_gj').is(':visible')){
+			$('#table_gj').trigger('blur');
+		}
+		if($('.form_box .errBorder:visible').length>0){
+			console.log('有未填项存在，请确认后提交！');
+			return false;
+		}
+		if($('.kuduExpre').length>0 && !$('.kuduExpre').val()){
+			$('.kuduExpre').addClass('errBorder').after('<span class="err_box_tip">请填写表达式</span>');
+			return;
+		}
+		if($('.timeExpre').length>0 && !$('.timeExpre').val()){
+			$('.timeExpre').addClass('errBorder').after('<span class="err_box_tip">请填写表达式</span>');
+			return;
+		}
+		$('#num').val(selectDataNum.value());
+		packOtherParams();
+		packHivePartParams();
+			if(!judgeLeftRightEqal()){
+			console.log('提交2');
+			return 
+			$('#submitForm').submit();
+		}
+	});
+
+    $('.fm_btn_ok_continue').click(function(){
+      $('.form_box').find('.validate').trigger('blur');
+      if($('#table_gj').is(':visible')){
+        $('#table_gj').trigger('blur');
+      }
+      if($('.form_box .errBorder:visible').length>0){
+        console.log('有未填项存在，请确认后提交！');
+        return false;
+      }
+      $('#num').val(selectDataNum.value());
+	  $('#addSchedule').val(true);
+	  packOtherParams();
+	  // if(isHavePartition) { // 有分区了再传参
+		//   packHivePartParams();
+	  // }
+		packHivePartParams();
+      	if(!judgeLeftRightEqal()){
+			console.log('提交3');
+			return 
+			$('#submitForm').submit();
+		}
+    });
+
+	    function judgeLeftRightEqal() {
+            let lock = false;
+            let right_table = $(".dest_tab_box .drop_scroll_box .col_table").eq(1);
+        $(".dest_tab_box .drop_scroll_box")
+          .find(".col_table input:checkbox")
+          .each(function () {
+            // 获取tr下的td的序列跟 hive下的tr下的td序列相等的 名称
+            let thisTr = $(this).parents("tr");
+            let trName = thisTr.find('input[name="colNames"]').val();
+            if (
+              trName !== "sysAddDbName" &&
+              trName !== "${#sysdate(0,0,0):yyyyMMdd-HH-mm-ss#}" && 
+							trName !== "sysAddTableName" &&
+			  			trName !== "sysName"
+            ) {
+              let trLine = thisTr.find("td span").eq(0).html();
+              right_table.find("tr").each(function (index, domEle) {
+                if (index == Number(trLine)) {
+                  let rightName = $(domEle)
+                  .find('input[name="hiveColNames"]')
+                  .val();
+                  console.log(`%c 111行 src/views/testPage/a.html rightName`, "color:blue", rightName);
+                  if (rightName !== trName) {
+                    lock = true;
+                    thisTr.addClass("is-red");
+                  } else {
+                    thisTr.removeClass("is-red");
+                  }
+                }
+              });
+            }
+          });
+        return lock;
+      }
+
+	$('.fm_btn_cancel').click(function(){
+		window.location.href="/datatunnel/import/db/index";
+	});
+
+	function initAutoCompleteEvent(target){
+		var firstItem;
+		target.autocomplete({
+			source: function( request, response ) {
+				$.ajax({
+					url: "/usercache/ajaxGetUser",
+					dataType: "json",
+					data:{
+						searchWord: request.term
+					},
+					success: function(data){
+						response($.map(data, function(item) {
+							return{
+								label:item.realName+'('+item.userName+')',
+								value: item.userName,
+								tel: item.tel
+							}
+						}));
+					}
+				});
+			},
+			minLength: 1,
+			autoFocus:true,
+			focus: function(event, ui){
+				firstItem = ui.item.label;
+			},
+			select: function( event, ui ) {
+				$(this).val(ui.item.label);
+				$(this).parent().next().find('input').val(ui.item.tel);
+				event.preventDefault();
+			}
+		}).blur(function(){
+			if(firstItem){
+				$(this).val(firstItem);
+			}
+		});
+	}
+
+	initAutoCompleteEvent($('.emp_name'));
+
+	function zdyDbTableName(){
+		$('#base_tablebox').hide();
+		$('#gj_tablebox').show();
+
+		//选中   高级后情况高级框，以及源表和目的表和数据切分字段
+		$('#gj_tablebox input').val('');
+		colsManage.setSrcDbDatas([]);
+		$('#dest_mysql_tb').empty();
+		selectSplit.setSourceData([]);
+		selectSplit.value('#');
+	}
+
+	function baseDbTableName(){
+		$('#base_tablebox').show();
+		$('#gj_tablebox').hide();
+		//去选   高级后自动触发一下下拉框的选中事件
+		selectDbTables.options.onChangeFunc.call(selectDbTables);
+	}
+
+	var originTableName = '';
+	$('#gj_tablebox input').on('blur', function(){
+		var tableNameIpt = $(this),
+			errTip = $('<span class="err_box_tip" style="margin: 8px 3px;">不能为空</span>');
+		if (originTableName == tableNameIpt.val()) return;
+		originTableName = tableNameIpt.val();
+		if(!tableNameIpt.val()){
+			tableNameIpt.addClass('errBorder')
+						.siblings('.err_box_tip').remove().end()
+						.after(errTip.text('不能为空').show());
+			return;
+		}else{
+			tableNameIpt.removeClass('errBorder')
+						.next('.err_box_tip').hide();
+		}
+		drag.popwin({
+			id: 'confirmDateIframe',
+			title: '请选择时间（校验表名）',
+			infoHtml: '<input type="text" id="table_date" class="fm_ipt" readonly="readonly"/><div id="picker_parent"></div>',
+			readyFunc: function(){
+                var PICKER_LOCALE = {
+                    format: 'YYYY-MM-DD HH:mm:ss',
+                    applyLabel: "确定",
+                    cancelLabel: "取消",
+                    daysOfWeek: [
+                        "日", "一", "二", "三", "四", "五", "六"
+                    ],
+                    monthNames: [
+                        "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
+                    ]
+                };
+                $('#table_date').daterangepicker({
+                    singleDatePicker: true,
+                    parentEl:$('#picker_parent'),
+                    alwaysShowCalendars: true,
+                    "autoApply": true,
+                    timePicker: true,
+                    timePicker24Hour: true,
+                    timePickerSeconds: true,
+                    autoUpdateInput: true,
+                    locale: PICKER_LOCALE
+                });
+				$('#table_date').trigger('click');
+				$('#picker_parent').on('click', ' .table-condensed tbody tr td', function(){
+					$('#picker_parent .applyBtn').click();
+				})
+				$('#picker_parent').on('change', '.hourselect, .minuteselect, .secondselect', function(){
+					$('#picker_parent .applyBtn').click();
+				});
+                // 不加下面这句代码的话，点击日期不起作用
+                $('#picker_parent .hourselect').trigger('change');
+			},
+			okCallback: function(){
+				$('#dest_mysql_tb').empty();
+				//$('#confirmDateIframe').add($('.maskLayer')).hide();
+				$.post('/datatunnel/dbserver/validationTableName', {dbId:selectDb.value() ,tableName:$('#gj_tablebox input').val(), date:$('#table_date').val()}, function(data){
+					var rs = eval("(" + data + ")");
+					if(rs.state == 'error'){
+						//参数错误 rs.reason
+						tableNameIpt.addClass('errBorder')
+									.siblings('.err_box_tip').remove().end()
+									.after(errTip.text(rs.reason).show());
+					}else{
+						colsManage.setSrcDbDatas(rs);
+						tableNameIpt.removeClass('errBorder')
+									.next('.err_box_tip').hide();
+					}
+				})
+			},
+			autoCloseDlg: true
+		});
+	});
+
+	$('.import_type_box input[name="importType"]').change(function(){
+		$('.form_box').clearValidate();
+		$("#table_gj").removeClass("errBorder");
+		if($("#table_gj").parent().find(".err_box_tip")){
+			$("#table_gj").parent().find(".err_box_tip").remove();
+		}
+		var curVal = $('.import_type_box input:checked').val();
+		if(curVal == '1'){
+			zdyDbTableName();
+		}else{
+			baseDbTableName();
+		}
+		if(curVal == '0' || curVal == '1'){
+			var localDataLst = selectDbTables.options.localData?selectDbTables.options.localData:[];
+			selectDbTables = new DropdownBox({
+								parent: $('#selectDbTables'),
+								hiddenIptName : 'table',
+								localData:localDataLst,
+								refreshShowable : false,
+								onChangeFunc : dbTablesChange
+                            });
+            $('.multi_tables_info').hide();
+		}
+		if(curVal == '2'){
+            var localDataLst = selectDbTables.options.localData?selectDbTables.options.localData:[];
+			selectDbTables = new DropdownBox({
+								parent: $('#selectDbTables'),
+								hiddenIptName : 'table',
+								localData:localDataLst,
+								refreshShowable : false,
+								selectAllable: true,
+								multiple : true,
+                                onChangeFunc : dbTablesChange,
+                                sureOrClickDocFunc: handleSureOrClickDoc
+                            });
+            $('.multi_tables_info').show();
+		}
+
+	});
+
+	/*
+	*   DB查询条件 出现join 提醒
+	*   create  zhangzhen  2017-7-13
+	*/
+	 $('.dbserach').keyup(function(){
+	   if ($('#selectType').attr('value') == 1) {
+		 var $this = $(this),
+			 index = $this.val().toLowerCase().indexOf('join');
+			 str = "<span class='warning'>多库并行导入支持DB名称参数，表达式：${DB}表示当前db名称;例:${DB}.test,当前选择的db为a，解析后为a.test</span>";
+			 $this.parent().next('.warning').remove()
+			 if ($('.warning').length > 0) return
+		 index != -1 ? $this.parent().after(str) : ''
+	    }
+	 })
+
+	 /*
+	 *
+	 */
+
+	 function changeJoin(){
+	    var content = $('.dbserach').val();
+	    if(content.length){
+	       var index = $('.dbserach').val().toLowerCase().indexOf('join');
+	           str = "<span class='warning'>多库并行导入支持DB名称参数，表达式：${DB}表示当前db名称;例:${DB}.test,当前选择的db为a，解析后为a.test</span>";
+	       index != -1 ? $('.dbserach').parent().after(str) : ''
+	    }
+	 }
+	/*
+	*  create zhangzhen  2017-07-28
+	*  该数据源已存在，具体如下
+	*/
+/* 	+ "<a onclick='newLabel("+item.jobUrl+")'>" */
+/*    + "<a href="+item.jobUrl+">" */
+	function importDes(data){
+    	var str = '';
+    	$.each(data, function(index,item){
+    		str += "<tr>"
+    			+ "<td>"
+    			+ "<a onclick=newList('"+item.jobUrl+"')>"
+    			+ item.name
+    			+ "</a>"
+    			+"</td>"
+    			+ "<td>"
+    			+ item.owner
+    			+"</td>"
+    			+ "<td>"
+    			+ item.status
+    			+"</td>"
+    			+ "<td>"
+    			+ "<a onclick=newList('"+item.hiveTableUrl+"','HIVE')>"
+    			+ item.hive
+    			+ "</a>"
+    			+"</td>"
+    		+"</tr>"
+    	})
+    	$('.import-body').html(str)
+	}
+	// tiptip
+	$('#partitionLi .icon-tip').click(function() {
+		console.log($('.partTip'))
+		$('.partTip').toggle();
+	});
+	$('.toParam').click(function () {
+		let url = '/datadevelop/job/param/index';
+		window.parent.addTabLabel({module: 'DATADEVELOP', menu1: 'csgl', url: url, name: '参数管理'});
+	});
+
+	function newList(url,type){
+		if(type=="HIVE"){
+			window.parent.addTabLabel({module: 'DATATUNNEL', menu1: 'dbdr', url: url, name: '导入任务'});
+		}else{
+			window.parent.addTabLabel({module: 'DATATUNNEL', menu1: 'dbdr', url: url, name: '导入任务'});
+		}
+	}
+
+	function taskNameBindEvents() {
+		$('input[name=name]').validate(function (val) {
+			var rst = (val && val.length > 0);
+			if (!rst) {
+				$(this).attr('data-poptitle', '任务名称不能为空');
+				return false;
+			}
+			$.ajax({
+				type : "GET",
+				url : '/schedule/job/checkJobNameRepeat.json?projectId='+projectId,
+				async : false,
+				data : {
+					name: val
+				},
+				success : function(data) {
+					var rs = eval("("+data+")") ;
+					if(rs.state == 'success' && rs.msg0 == true) {
+                        rst = 'success';
+                    } else {
+                        rst = 'error'
+                    }
+				}
+			});
+
+			$(this).attr('data-poptitle', '任务名称已经存在');
+			return rst == 'error';
+		})
+	}
+
+</script>
+<script type="text/javascript" src="/js/script.js"></script>   
+<!--<script type="text/javascript" src="/js/logs_bigdata-1.0.js"></script>-->
+<script>
+    // 点击外部下拉选择器弹框
+    $(document).bind("click", function (e) {
+        if($(e.target).closest("input").is(".ui-autocomplete-input") || $(e.target).closest("ul").is(".ui-menu")){
+            // console.log('点击了下拉框以内')
+        }else{
+            // console.log('点击了下拉框以外ui')
+            $(".ui-menu").hide();
+        }
+
+        if($(e.target).closest("div").is(".db_dropdown") || $(e.target).closest("div").is(".dropdown_list")){
+            // console.log('点击了下拉框以内')
+        }else{
+            // console.log('点击了下拉框以外db')
+            $(".dropdown_list").hide();
+        }
+
+        if($(e.target).closest("div").is(".fm_select")){
+
+        }else{
+            $('.oSbox').hide();
+        }
+        // DB导入，动态分区提示框点击其他地方隐藏
+        if($(e.target).parents(".partTip").length>0 && $(e.target).not('.toParam') || $(e.target).is('.icon-tip') ){
+
+        }else{
+            $(".partTip").hide();
+        }
+        // 任务调度表格,任务标签提示框，点击其他地方隐藏
+        if($(e.target).closest("input").is(".drop_search") || $(e.target).closest("div").is(".c_sug")) {
+            // 搜索框以内及下拉框以内drop_search
+        } else {
+            $(".c_sug").hide();
+        }
+    });
+</script></html>
